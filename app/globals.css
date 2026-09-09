@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
+}
+
+@layer base {
+  body {
+    @apply bg-ivory text-charcoal dark:bg-charcoal dark:text-ivory font-body antialiased transition-colors duration-300;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+
+  ::selection {
+    @apply bg-marigold/40 text-maroon dark:text-ivory;
+  }
+
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  [tabindex]:focus-visible {
+    outline: 2px solid #0B84F3;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Unity divider — signature motif echoing the three rising figures in the logo */
+.unity-divider {
+  width: 100%;
+  padding: 1.75rem 0;
+}
+
+.eyebrow {
+  @apply text-xs tracking-[0.28em] uppercase text-marigold-dark dark:text-marigold font-semibold;
+}
+
+.container-seva {
+  @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+}
