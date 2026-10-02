@@ -239,9 +239,6 @@ export default function AboutPage() {
                   <p className="text-sm font-semibold text-marigold">{aboutPageContent.founder.position}</p>
                 </div>
               </div>
-              <p className="mt-5 text-sm leading-relaxed text-sandalwood">
-                {aboutPageContent.founder.bio}
-              </p>
               <div className="mt-6 rounded-xl border border-maroon/10 p-4">
                 <p className="font-display text-base text-maroon">Founder message</p>
                 <p className="mt-3 text-sm leading-relaxed text-sandalwood">
