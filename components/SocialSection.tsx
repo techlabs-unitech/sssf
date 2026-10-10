@@ -29,8 +29,8 @@ export default function SocialSection() {
           {links.map((item) => {
             const PlatformIcon = iconMap[item.platform as keyof typeof iconMap] || Globe2;
             return (
-              <div key={item.platform} className="group rounded-[2rem] border border-maroon/10 bg-white/50 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-lg">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold/15 text-marigold transition-transform duration-300 group-hover:scale-105">
+              <div key={item.platform} className="group rounded-xl border border-maroon/10 bg-white/75 p-6 shadow-[0_10px_28px_rgba(23,47,64,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-lg">
+                <div className="flex h-11 w-11 items-center justify-center rounded-md bg-marigold/15 text-marigold-dark transition-transform duration-300 group-hover:scale-105">
                   <PlatformIcon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 font-display text-lg text-maroon">{item.platform}</h3>

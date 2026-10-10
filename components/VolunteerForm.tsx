@@ -95,7 +95,7 @@ export default function VolunteerForm({ contact }: { contact: VolunteerContact }
   return (
     <section id="volunteer-form" tabIndex={-1} className="py-16 md:py-20">
       <div className="container-seva">
-        <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8 md:p-10">
+        <div className="editorial-card p-6 sm:p-8 md:p-10">
           <div className="max-w-2xl">
             <span className="eyebrow">Volunteer application</span>
             <h2 className="mt-4 font-display text-3xl text-maroon">Express your interest</h2>

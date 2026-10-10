@@ -23,13 +23,13 @@ export default function FinancialTransparencyPage() {
 
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-3xl">
           <span className="eyebrow">Financial Transparency</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Financial Transparency
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             This page is intended to provide access to available financial and accountability documents for Sri Sai Swamy Seva Foundation. Where documents are not yet available publicly, the record is marked as publication pending.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -59,7 +59,7 @@ export default function FinancialTransparencyPage() {
               } as Record<VerificationStatus, string>;
 
               return (
-                <article key={doc.id} className="rounded-[2rem] border border-maroon/10 bg-white/50 p-7">
+                <article key={doc.id} className="editorial-card p-6 sm:p-7">
                   <div className="flex items-start gap-4">
                     <span className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold/15 text-marigold">
                       <Icon className="h-5 w-5" />
@@ -109,7 +109,7 @@ export default function FinancialTransparencyPage() {
 
       <section className="bg-ivory-soft py-16 md:py-20">
         <div className="container-seva">
-          <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+          <div className="editorial-card p-6 sm:p-8">
             <div className="flex flex-wrap gap-4">
               {Object.entries(verificationLabels).map(([key, label]) => (
                 <span key={key} className="inline-flex rounded-full border border-maroon/20 px-4 py-2 text-xs font-semibold text-maroon">

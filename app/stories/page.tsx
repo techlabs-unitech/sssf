@@ -10,13 +10,13 @@ export const metadata: Metadata = pageMetadata("/stories");
 export default function StoriesPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-3xl">
           <span className="eyebrow">Stories from the Community</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Behind every program are people and communities.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             We share beneficiary stories only when the information has been verified and appropriate consent has been obtained. These stories are different from project stories: they focus on the people and communities behind the work.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -32,7 +32,7 @@ export default function StoriesPage() {
 
       <section className="py-16 md:py-20">
         <div className="container-seva">
-          <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+          <div className="editorial-card p-6 sm:p-8">
             {beneficiaryStoriesContent.length === 0 ? (
               <div className="grid gap-6 lg:grid-cols-2">
                 <PendingContentState
@@ -44,7 +44,7 @@ export default function StoriesPage() {
                   ctaHref="/programs"
                 />
 
-                <div className="rounded-[2rem] border border-maroon/10 bg-white/60 p-8">
+                <div className="rounded-lg border border-maroon/10 bg-ivory-soft/70 p-6 sm:p-8">
                   <div className="flex items-center gap-3">
                     <FileText className="h-5 w-5 text-marigold" />
                     <h3 className="font-display text-2xl text-maroon">Story structure preview</h3>
@@ -65,7 +65,7 @@ export default function StoriesPage() {
             ) : (
               <div className="grid gap-4">
                 {beneficiaryStoriesContent.map((story) => (
-                  <article key={story.id} className="rounded-2xl border border-maroon/10 p-6">
+                  <article key={story.id} className="editorial-card p-5 sm:p-6">
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       <div>
                         <span className="font-display text-lg text-maroon">
@@ -97,7 +97,7 @@ export default function StoriesPage() {
                           </p>
                         ) : null}
                       </div>
-                      <div className="rounded-2xl border border-maroon/10 p-4">
+                      <div className="rounded-md bg-ivory-soft p-4">
                         <UserRound className="h-5 w-5 text-marigold" />
                         <p className="mt-4 text-sm leading-relaxed text-sandalwood">
                           {story.quote || "Verified story quote will be published when consented and verified."}

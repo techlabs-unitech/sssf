@@ -60,7 +60,7 @@ export default function PhotoCarousel({ slides, autoPlayMs = 4500 }: PhotoCarous
       onMouseLeave={() => setIsPaused(false)}
     >
       <div
-        className="relative h-[72vh] min-h-[420px] w-full overflow-hidden rounded-[1.5rem] border border-marigold/25 md:aspect-[21/9] md:h-auto md:min-h-0"
+        className="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-marigold/25 sm:aspect-[16/9] md:aspect-[21/9]"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >

@@ -12,13 +12,13 @@ export const metadata: Metadata = pageMetadata("/volunteer");
 export default function VolunteerPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-3xl">
           <span className="eyebrow">Volunteer</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Volunteer With Us
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             People can contribute time, skills, professional expertise, practical support, or service capacity to strengthen the foundation’s welfare and community work. Volunteer opportunities may include medical outreach, education assistance, food distribution, community events, communications, media support, fundraising, corporate volunteering, and skills-based service. Availability and current requirements will be confirmed by the foundation.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -45,8 +45,8 @@ export default function VolunteerPage() {
               const Icon = opportunity.icon;
               const opportunityHref = `/volunteer?area=${encodeURIComponent(opportunity.title)}#volunteer-form`;
               return (
-                <article key={opportunity.title} className="rounded-[2rem] border border-maroon/10 bg-white/50 p-7 transition-transform hover:-translate-y-1">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-marigold/15 text-marigold">
+                <article key={opportunity.title} className="editorial-card p-6 transition-transform hover:-translate-y-1 sm:p-7">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-md bg-marigold/15 text-marigold-dark">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-5 font-display text-xl text-maroon">{opportunity.title}</h3>
@@ -67,7 +67,7 @@ export default function VolunteerPage() {
       <section className="bg-ivory-soft py-16 md:py-20">
         <div className="container-seva">
           <div className="grid gap-6 md:grid-cols-2">
-            <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+            <article className="editorial-card p-6 sm:p-8">
               <span className="eyebrow">Volunteer process</span>
               <h2 className="mt-4 font-display text-3xl text-maroon">How volunteering begins</h2>
               <div className="mt-7 space-y-4">
@@ -86,7 +86,7 @@ export default function VolunteerPage() {
               </div>
             </article>
 
-            <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+            <article className="editorial-card p-6 sm:p-8">
               <span className="eyebrow">Corporate & skills-based volunteering</span>
               <h2 className="mt-4 font-display text-3xl text-maroon">Professional contribution</h2>
               <p className="mt-4 text-sm leading-relaxed text-sandalwood">

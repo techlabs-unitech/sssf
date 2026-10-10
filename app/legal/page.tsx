@@ -22,13 +22,13 @@ const iconMap = [
 export default function LegalPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-3xl">
           <span className="eyebrow">Legal & Compliance</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Documentation and compliance overview
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             {ORG.name} maintains a public information and trust-oriented approach. Where the repository does not contain verified documentation, the public record below is marked as “Documentation to be provided / verified.”
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -80,7 +80,7 @@ export default function LegalPage() {
                       const Icon = iconMap[recordIndex % iconMap.length];
                       const isVerified = record.status.toLowerCase().includes("verified");
                       return (
-                        <div key={record.category} className="rounded-2xl border border-maroon/10 p-6 bg-white/50">
+                        <div key={record.category} className="editorial-card p-5 sm:p-6">
                           <div className="flex items-start gap-4">
                             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold/10 text-maroon">
                               <Icon className="h-5 w-5" />
@@ -120,7 +120,7 @@ export default function LegalPage() {
             </div>
             <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {legalPageContent.publicDocuments.map((doc) => (
-                <article key={doc.title} className="rounded-2xl border border-maroon/10 bg-white/60 p-6">
+                <article key={doc.title} className="editorial-card p-5 sm:p-6">
                   <span className="rounded-full bg-marigold/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-maroon">
                     {doc.category}
                   </span>
@@ -154,7 +154,7 @@ export default function LegalPage() {
             </div>
             <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {legalPageContent.otherDocuments.map((doc) => (
-                <article key={doc.href} className="rounded-2xl border border-maroon/10 bg-white/60 p-6">
+                <article key={doc.href} className="editorial-card p-5 sm:p-6">
                   <span className="rounded-full bg-marigold/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-maroon">{doc.category}</span>
                   <h3 className="mt-4 font-display text-xl text-maroon">{doc.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-sandalwood">{doc.description}</p>
@@ -167,7 +167,7 @@ export default function LegalPage() {
             </div>
           </section>
 
-          <div className="mt-10 rounded-2xl border border-maroon/20 bg-maroon/5 p-8">
+          <div className="editorial-card mt-10 p-6 sm:p-8">
             <h3 className="font-display text-2xl text-maroon">
               Document and verification note
             </h3>

@@ -15,13 +15,13 @@ export default function EventsPage() {
 
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-2xl">
           <span className="eyebrow">Events</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Community Events &amp; Seva Activities
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             A record of the seva events, camps and community gatherings the foundation has carried out, along with photos from the field.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -57,7 +57,7 @@ export default function EventsPage() {
               </div>
             ) : (
               past.map((event) => (
-                <article key={event.id} className="rounded-2xl border border-maroon/10 p-6">
+                <article key={event.id} className="editorial-card p-5 sm:p-6">
                   <p className="text-xs tracking-wide uppercase text-marigold-dark">{event.date}</p>
                   <h3 className="mt-2 font-display text-base text-maroon">{event.title}</h3>
                   <p className="mt-2 flex items-center gap-1.5 text-xs text-sandalwood">
@@ -75,7 +75,7 @@ export default function EventsPage() {
 
       <section className="py-16 md:py-20">
         <div className="container-seva">
-          <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+          <div className="editorial-card p-6 sm:p-8">
             <span className="eyebrow">Community engagement</span>
             <h2 className="mt-4 font-display text-3xl text-maroon">Programs, events and volunteering together</h2>
             <p className="mt-4 text-sm leading-relaxed text-sandalwood">

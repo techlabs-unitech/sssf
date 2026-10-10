@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { hasValidAdminSession } from "@/lib/adminAuth";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export const runtime = "nodejs";
 
@@ -12,6 +12,7 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
   }
 
   try {
+    const supabaseAdmin = getSupabaseAdmin();
     const { data: existing, error: fetchError } = await supabaseAdmin
       .from("gallery_images")
       .select("id, storage_path")

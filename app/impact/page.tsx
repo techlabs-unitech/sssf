@@ -21,13 +21,13 @@ const IMPACT_PHOTOS = [
 
 export default function ImpactPage() {
   return (
-    <div className="container-seva py-16 md:py-20">
-      <section className="max-w-3xl">
+    <div className="container-seva">
+      <section className="page-intro max-w-3xl">
         <span className="eyebrow">Impact</span>
-        <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+        <h1 className="page-heading">
           What the Foundation is working on.
         </h1>
-        <p className="mt-6 text-base leading-relaxed text-sandalwood">
+        <p className="page-summary">
           The Foundation’s work is best understood through the programs it carries forward, the evidence it documents, and the stories that connect those efforts to real communities. Impact figures will be published only when reporting periods, source records, and verification details are available.
         </p>
       </section>
@@ -69,7 +69,7 @@ export default function ImpactPage() {
         <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {programsContent.map((program) => (
             <Reveal key={program.slug}>
-              <Link href={`/${program.slug}`} className="group block overflow-hidden rounded-[1.5rem] border border-maroon/10 bg-white/60 transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-[0_16px_30px_rgba(92,57,19,0.06)]">
+              <Link href={`/${program.slug}`} className="group block overflow-hidden rounded-lg border border-maroon/10 bg-white shadow-[0_16px_40px_rgba(16,42,67,0.055)] transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-[0_18px_40px_rgba(16,42,67,0.12)]">
                 {program.image ? (
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
@@ -111,13 +111,13 @@ export default function ImpactPage() {
             </Link>
           </div>
         </div>
-        <div className="mt-8 rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+        <div className="mt-8 editorial-card p-6 sm:p-8">
           {caseStudiesContent.length === 0 ? (
             <div className="space-y-5">
               <p className="text-base leading-relaxed text-sandalwood">
                 Project stories are being documented. Detailed case studies will be published as individual Foundation projects are verified and documented.
               </p>
-              <div className="rounded-2xl border border-maroon/10 bg-ivory-soft/60 p-5">
+              <div className="rounded-md bg-ivory-soft p-5">
                 <h3 className="font-display text-xl text-maroon">A case study looks closely at one Foundation project</h3>
                 <ul className="mt-4 space-y-2 text-sm leading-relaxed text-sandalwood">
                   <li>• Challenge</li>
@@ -132,7 +132,7 @@ export default function ImpactPage() {
           ) : (
             <div className="grid gap-4">
               {caseStudiesContent.map((study) => (
-                <article key={study.title} className="rounded-2xl border border-maroon/10 p-5">
+                <article key={study.title} className="editorial-card p-5">
                   <div className="flex items-center gap-4">
                     <span className="font-display text-lg text-maroon">{study.title}</span>
                     <span className="text-xs uppercase tracking-[0.16em] text-sandalwood">{study.program || "Program pending"}</span>
@@ -157,13 +157,13 @@ export default function ImpactPage() {
             Community stories <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="mt-8 rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+        <div className="mt-8 editorial-card p-6 sm:p-8">
           {beneficiaryStoriesContent.length === 0 ? (
             <div className="space-y-5">
               <p className="text-base leading-relaxed text-sandalwood">
                 Community stories will be shared here as they are verified and published.
               </p>
-              <div className="rounded-2xl border border-maroon/10 bg-ivory-soft/60 p-5">
+              <div className="rounded-md bg-ivory-soft p-5">
                 <h3 className="font-display text-xl text-maroon">The story structure</h3>
                 <ul className="mt-4 space-y-2 text-sm leading-relaxed text-sandalwood">
                   <li>• The Person</li>
@@ -177,7 +177,7 @@ export default function ImpactPage() {
           ) : (
             <div className="grid gap-4">
               {beneficiaryStoriesContent.map((story) => (
-                <article key={story.id} className="rounded-2xl border border-maroon/10 p-5">
+                <article key={story.id} className="editorial-card p-5">
                   <span className="font-display text-lg text-maroon">{story.firstName}</span>
                   <p className="mt-2 text-sm leading-relaxed text-sandalwood">
                     {story.location || "Location pending"} · {story.outcome || "Outcome pending"}
@@ -207,7 +207,7 @@ export default function ImpactPage() {
       </section>
 
       <section className="mt-16">
-        <div className="rounded-[2rem] border border-maroon/10 bg-white/60 p-8">
+        <div className="editorial-card p-6 sm:p-8">
           <span className="eyebrow">How to help</span>
           <h2 className="mt-4 font-display text-3xl text-maroon">Support the work behind the evidence</h2>
           <div className="mt-6 flex flex-wrap gap-4">

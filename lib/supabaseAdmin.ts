@@ -1,13 +1,11 @@
 import "server-only";
 import { createClient } from "@supabase/supabase-js";
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
-
-if (!supabaseUrl || !serviceRoleKey) {
-  throw new Error(
-    "Missing NEXT_PUBLIC_SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY environment variables."
-  );
+export class MissingSupabaseConfigurationError extends Error {
+  constructor(missingVariables: string[]) {
+    super(`Missing required Supabase environment variables: ${missingVariables.join(", ")}.`);
+    this.name = "MissingSupabaseConfigurationError";
+  }
 }
 
 /**
@@ -17,6 +15,19 @@ if (!supabaseUrl || !serviceRoleKey) {
  * and allocate receipt numbers even though the `donations` table has no
  * public policies.
  */
-export const supabaseAdmin = createClient(supabaseUrl, serviceRoleKey, {
-  auth: { persistSession: false, autoRefreshToken: false },
-});
+export function getSupabaseAdmin() {
+  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL?.trim();
+  const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  const missingVariables = [
+    !supabaseUrl && "NEXT_PUBLIC_SUPABASE_URL",
+    !serviceRoleKey && "SUPABASE_SERVICE_ROLE_KEY",
+  ].filter((name): name is string => Boolean(name));
+
+  if (missingVariables.length > 0 || !supabaseUrl || !serviceRoleKey) {
+    throw new MissingSupabaseConfigurationError(missingVariables);
+  }
+
+  return createClient(supabaseUrl, serviceRoleKey, {
+    auth: { persistSession: false, autoRefreshToken: false },
+  });
+}

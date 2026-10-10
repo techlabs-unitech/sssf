@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export const runtime = "nodejs";
 
@@ -81,7 +81,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Message is too long." }, { status: 400 });
     }
 
-    const { error } = await supabaseAdmin.from("volunteer_applications").insert({
+    const { error } = await getSupabaseAdmin().from("volunteer_applications").insert({
       name: name,
       email: email,
       phone: phone,

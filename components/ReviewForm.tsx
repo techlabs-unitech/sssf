@@ -50,7 +50,7 @@ export default function ReviewForm() {
 
   if (submitted) {
     return (
-      <div className="rounded-2xl border border-marigold/40 bg-ivory-soft p-10 text-center h-fit">
+      <div className="editorial-card h-fit border-marigold/35 bg-ivory-soft p-8 text-center sm:p-10">
         <CheckCircle2 className="mx-auto h-8 w-8 text-maroon" strokeWidth={1.75} />
         <h2 className="mt-4 font-display text-2xl text-maroon">Thank you.</h2>
         <p className="mt-3 text-sm text-sandalwood">
@@ -62,7 +62,7 @@ export default function ReviewForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-maroon/10 p-7 md:p-9">
+    <form onSubmit={handleSubmit} className="editorial-card p-6 sm:p-8 md:p-9">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="r-name" className="text-xs text-sandalwood">Full name</label>
@@ -72,7 +72,7 @@ export default function ReviewForm() {
             type="text"
             required
             maxLength={100}
-            className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+            className="form-control mt-2 w-full outline-none"
           />
         </div>
         <div>
@@ -81,7 +81,7 @@ export default function ReviewForm() {
             id="r-email"
             name="email"
             type="email"
-            className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+            className="form-control mt-2 w-full outline-none"
           />
         </div>
       </div>
@@ -92,7 +92,7 @@ export default function ReviewForm() {
           id="r-relationship"
           name="relationship"
           defaultValue="Wellwisher"
-          className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+          className="form-control mt-2 w-full outline-none"
         >
           {RELATIONSHIPS.map((r) => (
             <option key={r} value={r}>{r}</option>
@@ -136,7 +136,7 @@ export default function ReviewForm() {
           rows={5}
           maxLength={1000}
           placeholder="Tell us about your experience with the Foundation..."
-          className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold resize-none"
+          className="form-control mt-2 w-full resize-none outline-none"
         />
       </div>
 
@@ -147,7 +147,7 @@ export default function ReviewForm() {
       <button
         type="submit"
         disabled={submitting}
-        className="mt-7 w-full rounded-full bg-maroon py-3.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.01] disabled:opacity-60 disabled:hover:scale-100 sm:w-auto sm:px-10"
+        className="mt-7 w-full rounded-md bg-maroon py-3.5 text-sm font-semibold text-ivory transition-colors hover:bg-maroon-light disabled:opacity-60 sm:w-auto sm:px-10"
       >
         {submitting ? "Submitting..." : "Submit your review"}
       </button>

@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Fraunces, Work_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -44,6 +46,7 @@ export const metadata: Metadata = {
   creator: SITE_NAME,
   publisher: SITE_NAME,
   category: "non-profit organization",
+
   // NB: no `alternates.canonical` here on purpose — a canonical set at layout level
   // would be inherited by every page that doesn't override it. Each page sets its own
   // through pageMetadata() in lib/seo.ts.
@@ -58,6 +61,7 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
+
   openGraph: {
     type: "website",
     url: "/",
@@ -65,8 +69,16 @@ export const metadata: Metadata = {
     locale: SITE_LOCALE,
     title: HOME_TITLE,
     description: HOME_DESCRIPTION,
-    images: [{ url: ogImageUrl("/"), width: 1200, height: 630, alt: `${SITE_NAME} — NGO in Chintamani, Karnataka` }],
+    images: [
+      {
+        url: ogImageUrl("/"),
+        width: 1200,
+        height: 630,
+        alt: `${SITE_NAME} — NGO in Chintamani, Karnataka`,
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
     title: HOME_TITLE,
@@ -78,17 +90,30 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#0B0F8C",
+  themeColor: "#102A43",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="en-IN">
       <body className={`${fraunces.variable} ${workSans.variable} font-body`}>
         <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+
         <Header />
+
         <main>{children}</main>
+
         <Footer />
+
+        {/* Vercel Web Analytics */}
+        <Analytics />
+
+        {/* Vercel Speed Insights */}
+        <SpeedInsights />
       </body>
     </html>
   );

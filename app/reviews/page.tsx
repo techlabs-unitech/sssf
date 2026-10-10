@@ -9,13 +9,13 @@ export const metadata: Metadata = pageMetadata("/reviews");
 export default function ReviewsPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-2xl">
           <span className="eyebrow">Reviews & Feedback</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Tell us what our seva means to you.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             Whether you&rsquo;ve volunteered with us, received support, partnered
             with us, or simply wish us well from afar — we&rsquo;d love to hear
             your thoughts. Your words help others trust and join this journey.

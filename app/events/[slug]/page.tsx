@@ -26,10 +26,10 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
 
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-3xl">
           <span className="eyebrow">Event details</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             {event.title}
           </h1>
           <div className="mt-6 flex flex-wrap gap-3">
@@ -51,7 +51,7 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
 
       <section className="py-16 md:py-20">
         <div className="container-seva grid gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-          <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+          <article className="editorial-card p-6 sm:p-8">
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <CalendarDays className="h-5 w-5 text-marigold" />
@@ -91,20 +91,20 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
                 </div>
               ) : null}
 
-              <div className="rounded-2xl border border-maroon/10 p-5">
+              <div className="rounded-md bg-ivory-soft p-5">
                 <span className="eyebrow">Description</span>
                 <p className="mt-4 text-sm leading-relaxed text-sandalwood">{event.description}</p>
               </div>
 
               {event.purpose ? (
-                <div className="rounded-2xl border border-maroon/10 p-5">
+                <div className="rounded-md bg-ivory-soft p-5">
                   <span className="eyebrow">Purpose</span>
                   <p className="mt-4 text-sm leading-relaxed text-sandalwood">{event.purpose}</p>
                 </div>
               ) : null}
 
               {event.activities && event.activities.length > 0 ? (
-                <div className="rounded-2xl border border-maroon/10 p-5">
+                <div className="rounded-md bg-ivory-soft p-5">
                   <span className="eyebrow">Activities</span>
                   <ul className="mt-4 space-y-2 text-sm text-sandalwood">
                     {event.activities.map((activity) => (
@@ -118,7 +118,7 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
               ) : null}
 
               {event.beneficiaryInfo ? (
-                <div className="rounded-2xl border border-maroon/10 p-5">
+                <div className="rounded-md bg-ivory-soft p-5">
                   <span className="eyebrow">Beneficiaries</span>
                   <p className="mt-4 text-sm leading-relaxed text-sandalwood">{event.beneficiaryInfo}</p>
                 </div>
@@ -126,7 +126,7 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
             </div>
           </article>
 
-          <aside className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+          <aside className="editorial-card p-6 sm:p-8">
             <span className="eyebrow">Event information</span>
             <div className="mt-6 space-y-5">
               {event.registrationUrl ? (
@@ -134,7 +134,7 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
                   <LinkIcon className="h-4 w-4" /> Register
                 </a>
               ) : (
-                <div className="rounded-2xl border border-maroon/10 p-4 text-sm font-semibold text-sandalwood">
+                <div className="rounded-md bg-ivory-soft p-4 text-sm font-semibold text-sandalwood">
                   Registration details will be published when available.
                 </div>
               )}
@@ -146,7 +146,7 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
               ) : null}
 
               {event.galleryPhotos && event.galleryPhotos.length > 0 ? (
-                <div className="rounded-2xl border border-maroon/10 p-4">
+                <div className="rounded-md bg-ivory-soft p-4">
                   <span className="text-xs uppercase tracking-wide text-sandalwood">Photos</span>
                   <div className="mt-3 text-sm leading-relaxed text-sandalwood">
                     Event photo records will be published when verified photos are available.
@@ -155,13 +155,13 @@ export default function EventDetailPage({ params }: { params: { slug: string } }
               ) : null}
 
               {event.contact ? (
-                <div className="rounded-2xl border border-maroon/10 p-4">
+                <div className="rounded-md bg-ivory-soft p-4">
                   <span className="text-xs uppercase tracking-wide text-sandalwood">Contact</span>
                   <p className="mt-2 text-sm leading-relaxed text-sandalwood">{event.contact}</p>
                 </div>
               ) : null}
 
-              <div className="rounded-2xl border border-maroon/10 p-4">
+              <div className="rounded-md bg-ivory-soft p-4">
                 <span className="text-xs uppercase tracking-wide text-sandalwood">Category</span>
                 <p className="mt-2 text-sm font-semibold text-maroon">
                   {event.category ? eventCategoryLabels[event.category] : "Community activity"}

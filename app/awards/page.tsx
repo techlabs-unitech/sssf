@@ -49,13 +49,13 @@ const RECOGNITIONS = [
 export default function AwardsPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-2xl">
           <span className="eyebrow">Awards & Recognition</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Trusted, registered, and accountable.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             While the foundation continues to grow its community reach, here is the verified recognition, registration and compliance status that supports our credibility as a Section 8 non-profit. As new awards or recognitions are received, they will be published here.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -78,8 +78,8 @@ export default function AwardsPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {RECOGNITIONS.map((item, index) => (
               <Reveal key={item.title} delay={index * 60}>
-                <div className="h-full rounded-[1.75rem] border border-maroon/10 bg-white/60 p-7 shadow-[0_12px_24px_rgba(11,15,140,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-[0_18px_32px_rgba(11,15,140,0.1)]">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-marigold/15 text-maroon">
+                <div className="editorial-card h-full p-6 transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 sm:p-7">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-md bg-marigold/15 text-marigold-dark">
                     <item.icon className="h-6 w-6" strokeWidth={1.75} />
                   </span>
                   <h3 className="mt-5 font-display text-lg text-maroon">{item.title}</h3>
@@ -94,7 +94,7 @@ export default function AwardsPage() {
 
       <section className="bg-ivory-soft py-16 md:py-20">
         <div className="container-seva">
-          <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8 md:p-12">
+          <div className="editorial-card p-6 sm:p-8 md:p-12">
             <span className="eyebrow">Recognized on public registries</span>
             <h2 className="mt-4 font-display text-2xl md:text-3xl text-maroon">
               Verified by government registration systems, not self-declared claims.

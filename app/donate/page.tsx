@@ -16,13 +16,13 @@ const IMPACT = [
 export default function DonatePage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-2xl">
           <span className="eyebrow">Donate</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Every offering reaches someone.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             Your donation goes directly toward health camps, meals, school
             support and relief kits — no part of it is symbolic.
           </p>
@@ -38,12 +38,12 @@ export default function DonatePage() {
           <DonateForm />
 
           <div className="space-y-8">
-            <div className="rounded-2xl border border-maroon/10 p-7">
+            <div className="editorial-card p-6 sm:p-7">
               <h2 className="font-display text-xl text-maroon">Where donations go</h2>
               <ul className="mt-5 space-y-4">
                 {IMPACT.map((row) => (
-                  <li key={row.label} className="flex items-start gap-4 rounded-xl border border-maroon/10 bg-ivory-soft p-4">
-                    <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-full bg-marigold/15 text-marigold">
+                  <li key={row.label} className="flex items-start gap-4 rounded-md bg-ivory-soft p-4">
+                    <span className="mt-0.5 flex h-8 w-8 items-center justify-center rounded-md bg-marigold/15 text-marigold-dark">
                       <BadgeCheck className="h-4 w-4" />
                     </span>
                     <span className="text-sm text-sandalwood">

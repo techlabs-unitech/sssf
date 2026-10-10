@@ -10,13 +10,13 @@ export const metadata: Metadata = pageMetadata("/case-studies");
 export default function CaseStudiesPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-3xl">
           <span className="eyebrow">Project Stories</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             A case study looks closely at one Foundation project.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             A case study looks closely at one Foundation project — the challenge, the work carried out, the resources involved and the result. It is a detailed way to understand what happened, why it mattered and how the Foundation responded.
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -43,7 +43,7 @@ export default function CaseStudiesPage() {
                 ctaHref="/programs"
               />
 
-              <div className="rounded-[2rem] border border-maroon/10 bg-white/60 p-8">
+              <div className="editorial-card p-6 sm:p-8">
                 <div className="flex items-center gap-3">
                   <ClipboardList className="h-5 w-5 text-marigold" />
                   <h3 className="font-display text-2xl text-maroon">What each case study will include</h3>
@@ -63,7 +63,7 @@ export default function CaseStudiesPage() {
           ) : (
             <div className="grid gap-4">
               {caseStudiesContent.map((study) => (
-                <article key={study.id} className="rounded-2xl border border-maroon/10 p-6">
+                <article key={study.id} className="editorial-card p-5 sm:p-6">
                   <div className="flex flex-wrap items-center justify-between gap-4">
                     <div>
                       <span className="font-display text-xl text-maroon">{study.title}</span>
@@ -90,7 +90,7 @@ export default function CaseStudiesPage() {
                         <strong className="text-maroon">Problem:</strong> {study.problem}
                       </p>
                     </div>
-                    <div className="rounded-2xl border border-maroon/10 p-4">
+                    <div className="rounded-md bg-ivory-soft p-4">
                       <p className="text-sm leading-relaxed text-sandalwood">
                         <strong className="text-maroon">Intervention:</strong> {study.intervention}
                       </p>

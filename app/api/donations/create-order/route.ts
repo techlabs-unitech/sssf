@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { razorpay } from "@/lib/razorpay";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export const runtime = "nodejs";
 
@@ -26,6 +26,7 @@ export async function POST(req: NextRequest) {
 
     // Razorpay expects the amount in the smallest currency unit (paise).
     const amountInPaise = Math.round(numericAmount * 100);
+    const supabaseAdmin = getSupabaseAdmin();
 
     const order = await razorpay.orders.create({
       amount: amountInPaise,

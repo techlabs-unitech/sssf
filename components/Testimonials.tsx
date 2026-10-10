@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin, MissingSupabaseConfigurationError } from "@/lib/supabaseAdmin";
 import TestimonialsCarousel from "@/components/TestimonialsCarousel";
 
 type Review = {
@@ -11,24 +11,46 @@ type Review = {
   rating: number | null;
 };
 
-async function getApprovedReviews(): Promise<Review[]> {
-  const { data, error } = await supabaseAdmin
+async function getApprovedReviews(): Promise<{ reviews: Review[]; unavailable: boolean }> {
+  let client;
+  try {
+    client = getSupabaseAdmin();
+  } catch (error) {
+    if (error instanceof MissingSupabaseConfigurationError) {
+      console.error("Approved reviews are unavailable:", error.message);
+      return { reviews: [], unavailable: true };
+    }
+    throw error;
+  }
+
+  const { data, error } = await client
     .from("reviews")
     .select("id, name, relationship, message, rating")
     .eq("status", "approved")
     .order("created_at", { ascending: false })
     .limit(6);
-
   if (error) {
     console.error("Supabase fetch error (reviews):", error);
-    return [];
+    return { reviews: [], unavailable: true };
   }
 
-  return data ?? [];
+  return { reviews: data ?? [], unavailable: false };
 }
 
 export default async function Testimonials() {
-  const reviews = await getApprovedReviews();
+  const { reviews, unavailable } = await getApprovedReviews();
+
+  if (unavailable) {
+    return (
+      <section className="bg-ivory-soft py-12" role="status">
+        <div className="container-seva">
+          <p className="rounded-md border border-marigold/30 bg-white px-5 py-4 text-sm text-sandalwood">
+            Community reviews are temporarily unavailable. Please try again later.
+          </p>
+        </div>
+      </section>
+    );
+  }
 
   // Keep the homepage clean until at least one review has been approved.
   if (reviews.length === 0) return null;

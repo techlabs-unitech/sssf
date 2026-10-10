@@ -11,7 +11,7 @@ export default function ProgramDetailPage({ program }: { program: ProgramContent
   const Icon = program.icon;
 
   return (
-    <div className="container-seva py-16 md:py-20">
+    <div className="container-seva py-12 md:py-16">
       <JsonLd
         data={breadcrumbJsonLd([
           { name: "Our Programs", path: "/programs" },
@@ -19,33 +19,33 @@ export default function ProgramDetailPage({ program }: { program: ProgramContent
         ])}
       />
       <Reveal>
-      <section className="grid gap-10 lg:grid-cols-[1fr_0.92fr] lg:items-center">
+      <section className="page-intro grid gap-8 lg:grid-cols-[1fr_0.92fr] lg:items-center lg:gap-12">
         <div className="max-w-3xl">
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 items-center justify-center rounded-full bg-marigold/15 text-marigold">
+            <span className="flex h-12 w-12 items-center justify-center rounded-md bg-marigold/15 text-marigold-dark">
               <Icon className="h-6 w-6" />
             </span>
             <span className="eyebrow">{program.tag}</span>
           </div>
-          <h1 className="mt-6 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             {program.title}
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             {program.shortIntro}
           </p>
 
           <div className="mt-8 flex flex-wrap gap-4">
-            <Link href={program.ctaHref} className="rounded-full bg-maroon px-7 py-3 text-sm font-semibold text-ivory transition-transform hover:scale-[1.03]">
+            <Link href={program.ctaHref} className="rounded-md bg-maroon px-7 py-3 text-sm font-semibold text-ivory transition-colors hover:bg-maroon-light">
               {program.ctaLabel}
             </Link>
-            <Link href="/programs" className="inline-flex items-center gap-2 rounded-full border border-maroon px-7 py-3 text-sm font-semibold text-maroon">
+            <Link href="/programs" className="inline-flex items-center gap-2 rounded-md border border-maroon/25 px-7 py-3 text-sm font-semibold text-maroon transition-colors hover:bg-maroon/5">
               <ArrowLeft className="h-4 w-4" />
               Back to programs
             </Link>
           </div>
         </div>
 
-        <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border border-maroon/10 bg-ivory-soft">
+        <div className="relative aspect-[4/3] overflow-hidden rounded-xl border border-maroon/10 bg-ivory-soft shadow-[0_16px_44px_rgba(23,47,64,0.10)]">
           {program.image ? (
             <Image
               src={program.image}
@@ -65,7 +65,7 @@ export default function ProgramDetailPage({ program }: { program: ProgramContent
 
       <Reveal className="mt-14">
       <section className="grid gap-6 md:grid-cols-2">
-        <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+        <article className="editorial-card p-6 sm:p-8">
           <div className="flex items-center gap-3">
             <HeartHandshake className="h-6 w-6 text-marigold" />
             <span className="font-display text-xl text-maroon">Problem</span>
@@ -75,7 +75,7 @@ export default function ProgramDetailPage({ program }: { program: ProgramContent
           </p>
         </article>
 
-        <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+        <article className="editorial-card p-6 sm:p-8">
           <div className="flex items-center gap-3">
             <HandCoins className="h-6 w-6 text-marigold" />
             <span className="font-display text-xl text-maroon">What we do</span>
@@ -94,7 +94,7 @@ export default function ProgramDetailPage({ program }: { program: ProgramContent
 
       <Reveal className="mt-8">
       <section className="grid gap-6 md:grid-cols-2">
-        <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+        <article className="editorial-card p-6 sm:p-8">
           <div className="flex items-center gap-3">
             <HeartHandshake className="h-6 w-6 text-marigold" />
             <span className="font-display text-xl text-maroon">Who benefits</span>
@@ -109,7 +109,7 @@ export default function ProgramDetailPage({ program }: { program: ProgramContent
           </ul>
         </article>
 
-        <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+        <article className="editorial-card p-6 sm:p-8">
           <div className="flex items-center gap-3">
             <MapPin className="h-6 w-6 text-marigold" />
             <span className="font-display text-xl text-maroon">Locations</span>
@@ -142,7 +142,7 @@ export default function ProgramDetailPage({ program }: { program: ProgramContent
             {program.photos.length > 0 ? (
               <div className="grid gap-4 sm:grid-cols-2">
                 {program.photos.map((photo) => (
-                  <figure key={photo.src} className="overflow-hidden rounded-xl border border-maroon/10">
+                  <figure key={photo.src} className="overflow-hidden rounded-lg border border-maroon/10 bg-white">
                     <div className="relative aspect-[4/3]">
                       <FullscreenImageViewer
                         src={photo.src}
@@ -174,7 +174,7 @@ export default function ProgramDetailPage({ program }: { program: ProgramContent
         </div>
         <div className="mt-5 grid gap-4 md:grid-cols-3">
           {program.howToHelp.map((item, index) => (
-            <div key={`${item}-${index}`} className="rounded-2xl border border-maroon/10 p-4">
+            <div key={`${item}-${index}`} className="rounded-lg border border-maroon/10 bg-white/70 p-4">
               <p className="text-sm leading-relaxed text-sandalwood">{item}</p>
             </div>
           ))}

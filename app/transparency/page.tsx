@@ -10,13 +10,13 @@ export const metadata: Metadata = pageMetadata("/transparency");
 export default function TransparencyPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-3xl">
           <span className="eyebrow">Transparency</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             {transparencyOverview.heroTitle}
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             {transparencyOverview.heroDescription}
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
@@ -37,7 +37,7 @@ export default function TransparencyPage() {
       <section className="py-16 md:py-20">
         <div className="container-seva">
           <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-            <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+            <div className="editorial-card p-6 sm:p-8">
               <span className="eyebrow">Where donations support our work</span>
               <h2 className="mt-4 font-display text-3xl text-maroon">
                 {transparencyOverview.whereDonationsSupportTitle}
@@ -55,7 +55,7 @@ export default function TransparencyPage() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+            <div className="editorial-card p-6 sm:p-8">
               <span className="eyebrow">How funds may be used</span>
               <h2 className="mt-4 font-display text-3xl text-maroon">
                 {transparencyOverview.howFundsMayBeUsedTitle}
@@ -79,7 +79,7 @@ export default function TransparencyPage() {
       <section className="bg-ivory-soft py-16 md:py-20">
         <div className="container-seva">
           <div className="grid gap-6 md:grid-cols-2">
-            <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+            <article className="editorial-card p-6 sm:p-8">
               <span className="eyebrow">Program vs administrative spending</span>
               <h2 className="mt-4 font-display text-3xl text-maroon">
                 {transparencyOverview.allocationTitle}
@@ -121,7 +121,7 @@ export default function TransparencyPage() {
               </div>
             </article>
 
-            <article className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+            <article className="editorial-card p-6 sm:p-8">
               <span className="eyebrow">Verified Cost Examples</span>
               <h2 className="mt-4 font-display text-3xl text-maroon">
                 {transparencyOverview.costExamplesTitle}
@@ -156,7 +156,7 @@ export default function TransparencyPage() {
               "Supporting records",
               "Utilization reporting",
             ].map((step, index) => (
-              <div key={step} className="rounded-[2rem] border border-maroon/10 bg-white/50 p-6">
+              <div key={step} className="editorial-card p-5 sm:p-6">
                 <div className="flex items-center justify-between">
                   <HandCoins className="h-5 w-5 text-marigold" />
                   {index < 4 ? <ArrowDown className="h-4 w-4 text-sandalwood" /> : null}
@@ -170,7 +170,7 @@ export default function TransparencyPage() {
 
       <section className="bg-ivory-soft py-16 md:py-20">
         <div className="container-seva">
-          <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+          <div className="editorial-card p-6 sm:p-8">
             <span className="eyebrow">Annual targets</span>
             <h2 className="mt-4 font-display text-3xl text-maroon">
               {transparencyOverview.targetsTitle}
@@ -188,7 +188,7 @@ export default function TransparencyPage() {
 
       <section className="py-16 md:py-20">
         <div className="container-seva">
-          <div className="rounded-[2rem] border border-maroon/10 p-8">
+          <div className="editorial-card p-6 sm:p-8">
             <div className="flex flex-wrap gap-4">
               <span className="inline-flex rounded-full border border-maroon/20 px-4 py-2 text-xs font-semibold text-maroon">{verificationLabels.verified}</span>
               <span className="inline-flex rounded-full border border-sandalwood/20 px-4 py-2 text-xs font-semibold text-sandalwood">{verificationLabels.pending}</span>

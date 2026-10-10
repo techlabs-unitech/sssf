@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { generateReceiptPdf } from "@/lib/receiptPdf";
 import { sendReceiptEmail } from "@/lib/mailer";
 
@@ -30,6 +30,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Provide donationId or razorpayPaymentId." }, { status: 400 });
   }
 
+  const supabaseAdmin = getSupabaseAdmin();
   let query = supabaseAdmin.from("donations").select("*").eq("status", "paid");
   query = donationId ? query.eq("id", donationId) : query.eq("razorpay_payment_id", razorpayPaymentId);
   const { data: donation, error } = await query.single();

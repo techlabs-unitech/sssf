@@ -8,6 +8,8 @@
 
 html {
   scroll-behavior: smooth;
+  background: #faf8f2;
+  scroll-padding-top: 6rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -18,13 +20,16 @@ html {
 
 @layer base {
   body {
-    @apply bg-ivory text-charcoal font-body antialiased transition-colors duration-300;
+    @apply min-h-screen bg-ivory text-charcoal font-body antialiased;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
   }
 
   input,
   textarea,
   select {
     @apply transition-colors duration-200;
+    color-scheme: light;
   }
 
   button,
@@ -34,10 +39,11 @@ html {
 
   h1, h2, h3, h4 {
     @apply font-display;
+    text-wrap: balance;
   }
 
   ::selection {
-    @apply bg-marigold/40 text-maroon
+    @apply bg-marigold/30 text-maroon;
   }
 
   a:focus-visible,
@@ -45,7 +51,7 @@ html {
   input:focus-visible,
   textarea:focus-visible,
   [tabindex]:focus-visible {
-    outline: 2px solid #0B84F3;
+    outline: 2px solid #86632F;
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -63,15 +69,15 @@ html {
 /* Unity divider — signature motif echoing the three rising figures in the logo */
 .unity-divider {
   width: 100%;
-  padding: 1.75rem 0;
+  padding: 1rem 0;
 }
 
 .eyebrow {
-  @apply text-xs tracking-[0.28em] uppercase text-marigold-dark font-semibold;
+  @apply inline-block text-[0.68rem] tracking-[0.22em] uppercase text-marigold-dark font-semibold;
 }
 
 .container-seva {
-  @apply mx-auto w-full max-w-6xl px-6 md:px-10;
+  @apply mx-auto w-full max-w-[84rem] px-4 sm:px-6 lg:px-10;
 }
 
 @layer components {
@@ -81,11 +87,11 @@ html {
   }
 
   .button-primary {
-    @apply bg-maroon text-ivory hover:-translate-y-0.5 hover:bg-maroon-light hover:shadow-lg
+    @apply rounded-md bg-maroon text-ivory hover:-translate-y-0.5 hover:bg-maroon-light hover:shadow-lg;
   }
 
   .button-secondary {
-    @apply border border-maroon text-maroon hover:-translate-y-0.5 hover:bg-maroon/5
+    @apply rounded-md border border-maroon/25 text-maroon hover:-translate-y-0.5 hover:bg-maroon/5;
   }
 
   .reveal {
@@ -100,8 +106,16 @@ html {
     transform: translateY(0);
   }
 
+  .editorial-card {
+    @apply rounded-lg border border-maroon/10 bg-white shadow-[0_16px_40px_rgba(16,42,67,0.055)];
+  }
+
+  .form-control {
+    @apply min-h-12 rounded-md border border-maroon/15 bg-white px-4 py-3 text-sm text-charcoal placeholder:text-sandalwood/70 focus:border-marigold focus:ring-2 focus:ring-marigold/20;
+  }
+
   .section-band {
-    @apply bg-ivory-soft
+    @apply border-y border-maroon/10 bg-ivory-soft/80;
   }
 
   .editorial-rule {
@@ -109,15 +123,57 @@ html {
   }
 
   .footer-link {
-    @apply inline-block transition-transform duration-200 hover:translate-x-1;
+    @apply inline-block transition-colors duration-200 hover:text-marigold;
+  }
+
+  .page-intro {
+    @apply relative isolate py-12 sm:py-14 md:py-16;
+    border-bottom: 1px solid rgba(16, 42, 67, 0.1);
+  }
+
+  .page-intro::before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 100vw;
+    transform: translateX(-50%);
+    background:
+      radial-gradient(ellipse at 84% 20%, rgba(178, 138, 74, 0.09), transparent 32rem),
+      linear-gradient(115deg, #fff 0%, #faf8f2 62%, #f2eee4 100%);
+    content: "";
+  }
+
+  .page-heading {
+    @apply mt-4 font-display font-medium text-maroon;
+    max-width: 19ch;
+    font-size: clamp(2.35rem, 4.1vw, 3.7rem);
+    letter-spacing: -0.04em;
+    line-height: 1.06;
+    text-wrap: balance;
+  }
+
+  .page-summary {
+    @apply mt-5 max-w-3xl text-base leading-7 text-sandalwood sm:mt-6 sm:text-[1.0625rem] sm:leading-8;
+    max-width: 66ch;
+  }
+
+  .hero-heading {
+    @apply font-display font-medium text-maroon;
+    max-width: 20ch;
+    font-size: clamp(2.5rem, 4.7vw, 4.75rem);
+    letter-spacing: -0.055em;
+    line-height: 0.99;
+    text-wrap: balance;
   }
 
   .mobile-menu {
-    @apply max-h-0 overflow-hidden border-t border-maroon/10 bg-ivory opacity-0 transition-all duration-300
+    @apply invisible max-h-0 overflow-hidden border-t border-maroon/10 bg-ivory opacity-0 transition-all duration-300;
   }
 
   .mobile-menu-open {
-    @apply max-h-[32rem] opacity-100;
+    @apply visible max-h-[80vh] overflow-y-auto opacity-100;
   }
 
   .image-viewer {
@@ -153,6 +209,12 @@ html {
   .reveal-visible {
     opacity: 1;
     transform: none;
+  }
+
+  @media (max-width: 640px) {
+    .page-intro {
+      @apply py-10;
+    }
   }
 
   .image-viewer,

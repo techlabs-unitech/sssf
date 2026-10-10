@@ -30,13 +30,13 @@ const REPORTS = [
 export default function AnnualReportsPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-2xl">
           <span className="eyebrow">Annual Reports</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Our financial transparency, documented.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             Audited receipts, payments, and financial statements are made available here for anyone who would like to review how the foundation manages its funds. Reports are added as each year&rsquo;s audit is finalized.
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function AnnualReportsPage() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {REPORTS.map((report, index) => (
               <Reveal key={report.href} delay={index * 60}>
-                <div className="flex h-full flex-col rounded-[1.75rem] border border-maroon/10 bg-white/60 p-7 shadow-[0_12px_24px_rgba(11,15,140,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-[0_18px_32px_rgba(11,15,140,0.1)]">
+                <div className="editorial-card flex h-full flex-col p-6 transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 sm:p-7">
                   <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.14em] text-marigold-dark">
                     <CalendarDays className="h-3.5 w-3.5" />
                     {report.year}
@@ -78,7 +78,7 @@ export default function AnnualReportsPage() {
 
       <section className="bg-ivory-soft py-16 md:py-20">
         <div className="container-seva">
-          <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8 md:p-12">
+          <div className="editorial-card p-6 sm:p-8 md:p-12">
             <span className="eyebrow">Looking for more detail?</span>
             <h2 className="mt-4 font-display text-2xl md:text-3xl text-maroon">
               Visit our Financial Transparency and Legal & Compliance pages

@@ -102,7 +102,7 @@ export default function DonateForm() {
         name: "Sri Sai Swamy Seva Foundation",
         description: frequency === "monthly" ? "Monthly donation" : "One-time donation",
         prefill: { name, email },
-        theme: { color: "#0B0F8C" },
+        theme: { color: "#102A43" },
         handler: async (response: RazorpayCheckoutHandlerResponse) => {
           try {
             const verifyRes = await fetch("/api/donations/verify", {
@@ -146,7 +146,7 @@ export default function DonateForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-2xl border border-marigold/40 bg-ivory-soft p-10 text-center">
+      <div className="editorial-card border-marigold/35 bg-ivory-soft p-8 text-center sm:p-10">
         <Heart className="mx-auto h-8 w-8 text-vermillion" fill="currentColor" strokeWidth={0} />
         <h2 className="mt-4 font-display text-2xl text-maroon">
           Thank you for your offering.
@@ -166,12 +166,12 @@ export default function DonateForm() {
         onLoad={() => setScriptReady(true)}
         strategy="afterInteractive"
       />
-      <form onSubmit={handleSubmit} className="rounded-2xl border border-maroon/10 p-7 md:p-9">
-        <div className="flex rounded-full border border-maroon/20 p-1 w-fit">
+      <form onSubmit={handleSubmit} className="editorial-card p-6 sm:p-8 md:p-9">
+        <div className="flex w-fit rounded-md border border-maroon/20 p-1">
           <button
             type="button"
             onClick={() => setFrequency("once")}
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
+            className={`rounded px-5 py-2 text-sm font-semibold transition-colors ${
               frequency === "once"
                 ? "bg-maroon text-ivory"
                 : "text-sandalwood"
@@ -182,7 +182,7 @@ export default function DonateForm() {
           <button
             type="button"
             onClick={() => setFrequency("monthly")}
-            className={`rounded-full px-5 py-2 text-sm font-semibold transition-colors ${
+            className={`rounded px-5 py-2 text-sm font-semibold transition-colors ${
               frequency === "monthly"
                 ? "bg-maroon text-ivory"
                 : "text-sandalwood"
@@ -201,7 +201,7 @@ export default function DonateForm() {
                 setAmount(a);
                 setCustomAmount("");
               }}
-              className={`rounded-xl border py-3 text-sm font-semibold transition-colors ${
+              className={`rounded-md border py-3 text-sm font-semibold transition-colors ${
                 !customAmount && amount === a
                   ? "border-marigold bg-marigold/15 text-maroon"
                   : "border-maroon/15 text-sandalwood hover:border-marigold/50"
@@ -224,7 +224,7 @@ export default function DonateForm() {
             value={customAmount}
             onChange={(e) => setCustomAmount(e.target.value)}
             placeholder="e.g. 2500"
-            className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+            className="form-control mt-2 w-full outline-none"
           />
         </div>
 
@@ -237,7 +237,7 @@ export default function DonateForm() {
               required
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+              className="form-control mt-2 w-full outline-none"
             />
           </div>
           <div>
@@ -248,7 +248,7 @@ export default function DonateForm() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+              className="form-control mt-2 w-full outline-none"
             />
           </div>
         </div>
@@ -262,7 +262,7 @@ export default function DonateForm() {
             value={address}
             onChange={(e) => setAddress(e.target.value)}
             placeholder="House / street, city, PIN"
-            className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+            className="form-control mt-2 w-full outline-none"
           />
         </div>
 
@@ -275,7 +275,7 @@ export default function DonateForm() {
             onChange={(e) => setPan(e.target.value.toUpperCase())}
             placeholder="e.g. ABCDE1234F"
             maxLength={10}
-            className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold uppercase"
+            className="form-control mt-2 w-full uppercase outline-none"
           />
         </div>
 
@@ -286,7 +286,7 @@ export default function DonateForm() {
         <button
           type="submit"
           disabled={status === "processing"}
-          className="mt-8 flex w-full items-center justify-center gap-2 rounded-full bg-maroon py-3.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.01] disabled:opacity-60 disabled:hover:scale-100"
+          className="mt-8 flex w-full items-center justify-center gap-2 rounded-md bg-maroon py-3.5 text-sm font-semibold text-ivory transition-colors hover:bg-maroon-light disabled:opacity-60"
         >
           {status === "processing" && <Loader2 className="h-4 w-4 animate-spin" />}
           Donate ₹{selectedAmount ? selectedAmount.toLocaleString("en-IN") : "0"}

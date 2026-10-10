@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { hasValidAdminSession } from "@/lib/adminAuth";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export const runtime = "nodejs";
 // Give slow uploads (large images, cold Supabase connections) enough room to
@@ -54,6 +54,7 @@ export async function POST(req: NextRequest) {
 
     const buffer = Buffer.from(await file.arrayBuffer());
     const path = `${crypto.randomUUID()}.${extension}`;
+    const supabaseAdmin = getSupabaseAdmin();
 
     const { error: uploadError } = await supabaseAdmin.storage.from(BUCKET).upload(path, buffer, {
       contentType: file.type,

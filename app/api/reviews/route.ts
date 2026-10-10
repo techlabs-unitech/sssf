@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 
 export const runtime = "nodejs";
 
@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
         ? relationship
         : "Wellwisher";
 
-    const { error } = await supabaseAdmin.from("reviews").insert({
+    const { error } = await getSupabaseAdmin().from("reviews").insert({
       name: name.trim(),
       email: email ? String(email).trim().toLowerCase() : null,
       relationship: cleanRelationship,

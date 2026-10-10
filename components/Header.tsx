@@ -64,8 +64,8 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 border-b border-maroon/10 bg-ivory/95 shadow-[0_1px_0_rgba(11,15,140,0.04)] backdrop-blur-md">
-      <div className="mx-auto flex h-24 w-full max-w-[1600px] items-center justify-between px-6 md:px-10 xl:px-14">
+    <header className="sticky top-0 z-50 border-b border-maroon/10 bg-ivory/95 backdrop-blur-md">
+      <div className="mx-auto flex h-[4.5rem] w-full max-w-[1600px] items-center justify-between px-4 sm:h-[4.75rem] sm:px-6 lg:px-8 xl:px-10">
         <Link href="/" className="flex items-center gap-3 shrink-0" onClick={() => setOpen(false)}>
           <Image
             src="/logo-full.png"
@@ -73,15 +73,15 @@ export default function Header() {
             width={112}
             height={112}
             priority
-            className="h-14 w-14 shrink-0"
+            className="h-12 w-12 shrink-0 sm:h-[3.25rem] sm:w-[3.25rem]"
           />
           <span className="hidden sm:flex flex-col leading-none">
-            <span className="font-display text-lg text-maroon">Sri Sai Swamy Seva</span>
-            <span className="mt-1 text-[11px] tracking-[0.2em] text-marigold-dark">FOUNDATION</span>
+            <span className="font-display text-base text-maroon lg:text-[1.05rem]">Sri Sai Swamy Seva</span>
+            <span className="mt-1 text-[10px] tracking-[0.19em] text-marigold-dark">FOUNDATION</span>
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 ml-auto lg:flex xl:gap-7">
+        <nav className="ml-auto hidden items-center gap-2 xl:flex 2xl:gap-3">
           {NAV_LINKS.map((link) => {
             const active = pathname === link.href || (link.dropdown && link.dropdown.some((d) => pathname === d.href.split("#")[0]));
             const isDropdownOpen = desktopDropdown === link.href;
@@ -91,10 +91,18 @@ export default function Header() {
                 className="relative shrink-0"
                 onMouseEnter={() => link.dropdown && openDropdown(link.href)}
                 onMouseLeave={() => link.dropdown && scheduleClose()}
+                onFocus={() => link.dropdown && openDropdown(link.href)}
+                onBlur={(event) => {
+                  if (!(event.relatedTarget instanceof Node) || !event.currentTarget.contains(event.relatedTarget)) {
+                    scheduleClose();
+                  }
+                }}
               >
                 <Link
                   href={link.href}
-                  className={`relative flex items-center gap-1 whitespace-nowrap py-2 text-[15px] font-medium tracking-wide transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-marigold after:transition-transform hover:after:scale-x-100 ${
+                  aria-expanded={link.dropdown ? isDropdownOpen : undefined}
+                  aria-controls={link.dropdown ? `nav-dropdown-${link.href.slice(1)}` : undefined}
+                  className={`relative flex items-center gap-1 whitespace-nowrap py-2 text-[11px] font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-marigold after:transition-transform hover:after:scale-x-100 2xl:text-xs ${
                     active
                       ? "font-semibold text-maroon after:scale-x-100"
                       : "text-sandalwood hover:text-maroon"
@@ -110,11 +118,12 @@ export default function Header() {
 
                 {link.dropdown ? (
                   <div
+                    id={`nav-dropdown-${link.href.slice(1)}`}
                     className={`absolute left-1/2 top-full z-50 w-64 -translate-x-1/2 pt-3 transition-all duration-200 ${
-                      isDropdownOpen ? "pointer-events-auto opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-1"
+                      isDropdownOpen ? "visible pointer-events-auto opacity-100 translate-y-0" : "invisible pointer-events-none opacity-0 -translate-y-1"
                     }`}
                   >
-                    <div className="overflow-hidden rounded-2xl border border-maroon/10 bg-ivory shadow-[0_18px_38px_rgba(11,15,140,0.12)]">
+                    <div className="overflow-hidden rounded-xl border border-maroon/10 bg-ivory shadow-[0_18px_38px_rgba(23,47,64,0.14)]">
                       {link.dropdown.map((item) => (
                         <Link
                           key={item.href}
@@ -132,19 +141,19 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="hidden lg:flex items-center shrink-0 pl-8">
+        <div className="hidden shrink-0 pl-3 xl:flex">
           <Link
             href="/donate"
-            className="flex items-center gap-2 whitespace-nowrap rounded-full bg-maroon px-6 py-2.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.03]"
+            className="flex items-center gap-1.5 whitespace-nowrap rounded-md bg-maroon px-3 py-2.5 text-xs font-semibold text-ivory transition-colors hover:bg-maroon-light 2xl:gap-2 2xl:px-4 2xl:text-sm"
           >
             <Heart className="h-4 w-4" strokeWidth={2} /> Donate Now
           </Link>
         </div>
 
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-2 xl:hidden">
           <Link
             href="/donate"
-            className="flex items-center gap-1.5 rounded-full bg-maroon px-4 py-2 text-xs font-semibold text-ivory"
+            className="flex items-center gap-1.5 rounded-md bg-maroon px-3.5 py-2 text-xs font-semibold text-ivory"
           >
             <Heart className="h-3.5 w-3.5" strokeWidth={2} /> Donate
           </Link>
@@ -154,14 +163,14 @@ export default function Header() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-maroon/20"
+            className="flex h-11 w-11 items-center justify-center rounded-md border border-maroon/20 bg-white/70"
           >
             {open ? <X className="h-5 w-5 text-maroon" /> : <Menu className="h-5 w-5 text-maroon" />}
           </button>
         </div>
       </div>
 
-      <div id="mobile-menu" className={`mobile-menu lg:hidden ${open ? "mobile-menu-open" : ""}`}>
+      <div id="mobile-menu" className={`mobile-menu xl:hidden ${open ? "mobile-menu-open" : ""}`}>
         <nav className="mx-auto flex w-full max-w-7xl flex-col px-6 py-4 md:px-10">
           {NAV_LINKS.map((link) => (
             <div key={link.href} className="border-b border-maroon/5">

@@ -35,7 +35,7 @@ export async function GET(request: Request) {
           justifyContent: "space-between",
           position: "relative",
           padding: "60px 72px 66px",
-          background: "linear-gradient(135deg, #0B0F8C 0%, #07082E 100%)",
+          background: "linear-gradient(135deg, #102A43 0%, #0B1E30 100%)",
           color: "#FFFBF0",
         }}
       >

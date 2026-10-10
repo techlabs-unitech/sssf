@@ -8,24 +8,20 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Token names kept generic; hex values are sampled directly from the
-        // foundation's logo (navy ring, sky-blue/magenta/leaf-green rising
-        // figures, rust-orange disc, pale-yellow supporting hand).
+        // Shared editorial palette: ivory, deep blue-gray, restrained gold, and charcoal.
         ivory: {
-          DEFAULT: "#FFFBF0",
-          soft: "#FFF6DC",
+          DEFAULT: "#FAF8F2",
+          soft: "#F0ECE2",
         },
         maroon: {
-          // primary brand navy
-          DEFAULT: "#0B0F8C",
-          light: "#2A2FB0",
-          dark: "#07082E",
+          DEFAULT: "#102A43",
+          light: "#1E4A6A",
+          dark: "#0B1E30",
         },
         marigold: {
-          // primary CTA / accent — sky blue from the logo
-          DEFAULT: "#0B84F3",
-          light: "#4DA8F7",
-          dark: "#0A6BC7",
+          DEFAULT: "#B28A4A",
+          light: "#C7A66E",
+          dark: "#86632F",
         },
         vermillion: {
           // warm secondary accent — rust/terracotta disc from the logo
@@ -33,14 +29,13 @@ const config: Config = {
           light: "#E0602F",
         },
         charcoal: {
-          DEFAULT: "#0A0B2E",
-          soft: "#12143F",
-          softer: "#1A1C52",
+          DEFAULT: "#25292B",
+          soft: "#343A3D",
+          softer: "#464D50",
         },
         sandalwood: {
-          // muted body text — desaturated navy-slate
-          DEFAULT: "#3B3F6B",
-          light: "#5C6099",
+          DEFAULT: "#566168",
+          light: "#737D82",
         },
         magenta: {
           DEFAULT: "#C61FBB",
@@ -57,7 +52,7 @@ const config: Config = {
       },
       backgroundImage: {
         "flame-glow":
-          "radial-gradient(circle, rgba(11,132,243,0.28) 0%, rgba(11,132,243,0) 70%)",
+          "radial-gradient(circle, rgba(178,138,74,0.20) 0%, rgba(178,138,74,0) 70%)",
       },
       keyframes: {
         rise: {

@@ -9,6 +9,7 @@ import FounderStory from "@/components/FounderStory";
 import PhotoCarousel from "@/components/PhotoCarousel";
 import Testimonials from "@/components/Testimonials";
 import Reveal from "@/components/Reveal";
+import HeroVideo from "@/components/HeroVideo";
 import { foundationProgramPhotos } from "@/lib/foundationPhotos";
 import { pageMetadata } from "@/lib/seo";
 
@@ -76,55 +77,60 @@ export default async function Home() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-flame-glow opacity-60 pointer-events-none" />
+      <section className="relative isolate overflow-hidden bg-ivory">
+        <div className="pointer-events-none absolute inset-0 bg-flame-glow opacity-45" />
         <Image
           src="/images/watermark-seal.png"
           alt=""
           aria-hidden="true"
           width={500}
           height={432}
-          className="pointer-events-none absolute -right-16 -top-16 -z-10 hidden h-[380px] w-[380px] opacity-[0.07] md:block lg:-right-10 lg:top-1/2 lg:h-[460px] lg:w-[460px] lg:-translate-y-1/2"
+          className="pointer-events-none absolute -right-16 -top-16 z-0 hidden h-[380px] w-[380px] opacity-[0.07] md:block lg:-right-10 lg:top-1/2 lg:h-[460px] lg:w-[460px] lg:-translate-y-1/2"
         />
-        <div className="container-seva relative grid gap-12 py-16 md:py-24 lg:grid-cols-2 lg:items-center">
-          <div className="animate-rise">
+        <div className="container-seva relative z-10 grid items-center gap-8 py-8 sm:gap-10 sm:py-11 lg:grid-cols-[1.08fr_0.92fr] lg:gap-12 lg:py-12 xl:gap-14 xl:py-14">
+          <div className="animate-rise max-w-2xl lg:py-2">
             <span className="eyebrow">NGO in Chintamani, Chikkaballapura · Since 2021</span>
-            <h1 className="mt-4 font-display text-4xl leading-[1.1] text-maroon md:text-5xl lg:text-[3.2rem]">
+            <h1 className="hero-heading mt-5">
               Hope, dignity, and
-              <br />
-              <span className="italic text-marigold">brighter futures.</span>
+              <span className="block italic text-marigold-dark">brighter futures.</span>
             </h1>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-sandalwood">
+            <p className="mt-5 max-w-[38rem] text-[0.9375rem] leading-7 text-sandalwood sm:mt-6 sm:text-base sm:leading-7">
               Dr. N.R. Malluraja, known to the community as Sai Swamy, founded Sri Sai Swamy Seva Foundation in 2021 in Chintamani, Chikkaballapura district. He leads the foundation&apos;s grassroots-to-policy work across health, education, socio-economic empowerment, and community welfare.
             </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
+            <div className="mt-7 flex flex-wrap items-center gap-3">
+              <Link
+                href="/donate"
+                className="inline-flex min-h-11 items-center gap-2 rounded-md bg-maroon px-5 py-3 text-sm font-semibold text-ivory shadow-[0_10px_24px_rgba(16,42,67,0.16)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-maroon-light hover:shadow-[0_14px_30px_rgba(16,42,67,0.2)] sm:px-6"
+              >
+                Donate Now <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/volunteer"
+                className="inline-flex min-h-11 items-center rounded-md px-5 py-3 text-sm font-semibold text-maroon transition-colors duration-200 hover:bg-maroon/5 sm:px-6"
+              >
+                Volunteer with us
+              </Link>
+            </div>
+            <div className="mt-5">
               <a
                 href="/Srisai-Swamy-Seva-Foundation.pdf"
                 download
-                className="rounded-full bg-maroon px-7 py-3.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.03]"
+                className="inline-flex items-center gap-2 text-sm font-medium text-sandalwood underline decoration-marigold/50 underline-offset-4 transition-colors hover:text-maroon"
               >
                 📄 Download Foundation Profile
               </a>
-              
             </div>
           </div>
 
           <div className="relative animate-rise [animation-delay:150ms]">
-            <div className="relative aspect-square w-full max-w-md mx-auto overflow-hidden rounded-[2rem] border border-marigold/30">
-              <video
-                src="/edu.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-              />
+            <div className="relative mx-auto aspect-[5/4] w-full max-w-2xl overflow-hidden rounded-lg bg-white shadow-[0_24px_60px_rgba(16,42,67,0.17)] sm:aspect-[4/3]">
+              <HeroVideo />
             </div>
-            <div className="absolute -bottom-6 -left-6 hidden md:flex items-center gap-3 rounded-2xl bg-ivory border border-marigold/30 px-5 py-4 shadow-xl">
+            <div className="pointer-events-none absolute bottom-0 left-0 right-0 flex items-center gap-3 bg-gradient-to-t from-[#0b1e30]/85 via-[#0b1e30]/50 to-transparent px-4 pb-4 pt-12 text-white sm:px-5 sm:pb-5">
               <SevaMark size={30} />
               <div>
-                <p className="font-display text-lg text-maroon leading-none">SSSF Foundation</p>
-                <p className="text-xs text-sandalwood mt-1">Srisai Swamy Seva Foundation</p>
+                <p className="font-display text-base leading-none">SSSF Foundation</p>
+                <p className="mt-1 text-[11px] text-white/75">Srisai Swamy Seva Foundation</p>
               </div>
             </div>
           </div>
@@ -134,36 +140,38 @@ export default async function Home() {
         </div>
       </section>
 
-      <FounderStory />
+      <div className="bg-gradient-to-b from-white via-ivory to-ivory-soft">
+        <FounderStory />
+      </div>
 
-      <section className="py-20 md:py-24">
+      <section className="section-band py-16 md:py-24">
         <div className="container-seva">
-          <Reveal className="max-w-3xl">
+          <Reveal className="max-w-4xl">
             <span className="eyebrow">OUR IMPACT</span>
-            <h2 className="mt-4 font-display text-3xl text-maroon md:text-4xl">
+            <h2 className="mt-4 max-w-4xl font-display text-3xl leading-tight tracking-tight text-maroon md:text-4xl">
               Service expressed through education, healthcare, food support and community development.
             </h2>
-            <p className="mt-4 text-sm md:text-base leading-relaxed text-sandalwood">
+            <p className="mt-5 max-w-3xl text-sm leading-7 text-sandalwood md:text-base md:leading-8">
               What has the Foundation actually been working on? The clearest answer is found in the program areas, images and documented activity records that show how services are being carried forward in real communities.
             </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-12 grid gap-5 sm:gap-6 md:grid-cols-2 xl:grid-cols-4">
             {IMPACT_AREAS.map((area, index) => (
               <Reveal key={area.title} delay={index * 70}>
-                <Link href={area.href} className="group block overflow-hidden rounded-[1.75rem] border border-maroon/10 bg-white/60 shadow-[0_12px_24px_rgba(92,57,19,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-[0_18px_32px_rgba(92,57,19,0.08)]">
+                <Link href={area.href} className="group block overflow-hidden rounded-xl border border-maroon/10 bg-white/80 shadow-[0_10px_28px_rgba(23,47,64,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-[0_18px_36px_rgba(23,47,64,0.12)]">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={area.src}
                       alt={area.alt}
                       fill
                       sizes="(max-width: 768px) 90vw, (max-width: 1200px) 45vw, 22vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
                     />
                   </div>
                   <div className="p-5">
                     <h3 className="font-display text-2xl text-maroon">{area.title}</h3>
-                    <p className="mt-3 text-sm leading-relaxed text-sandalwood">{area.description}</p>
+                    <p className="mt-3 text-sm leading-6 text-sandalwood">{area.description}</p>
                     <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-maroon">
                       Read more
                       <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -177,7 +185,7 @@ export default async function Home() {
           <div className="mt-10 flex justify-center">
             <Link
               href="/impact"
-              className="rounded-full bg-maroon px-7 py-3.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.02]"
+              className="rounded-md bg-maroon px-7 py-3.5 text-sm font-semibold text-ivory shadow-[0_8px_22px_rgba(16,42,67,0.14)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-maroon-light hover:shadow-[0_12px_28px_rgba(16,42,67,0.2)]"
             >
               SEE OUR IMPACT
             </Link>
@@ -185,39 +193,41 @@ export default async function Home() {
         </div>
       </section>
 
-      <Reveal className="container-seva pb-16 md:pb-20">
+      <section className="border-y border-maroon/10 bg-white/70 py-16 md:py-20">
+      <Reveal className="container-seva">
         <div className="max-w-xl">
           <span className="eyebrow">A glimpse of our seva</span>
           <h2 className="mt-4 font-display text-3xl text-maroon md:text-4xl">
             Gallery
           </h2>
         </div>
-        <div className="mt-8 -mx-6 md:mx-0">
+        <div className="mt-8 -mx-4 sm:-mx-6 md:mx-0">
           <PhotoCarousel slides={HOME_CAROUSEL_SLIDES} />
         </div>
         <div className="mt-8 flex justify-center md:justify-start">
           <Link
             href="/gallery"
-            className="inline-flex items-center gap-2 rounded-full bg-maroon px-7 py-3.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.03]"
+            className="inline-flex items-center gap-2 rounded-md bg-maroon px-7 py-3.5 text-sm font-semibold text-ivory shadow-[0_8px_22px_rgba(16,42,67,0.14)] transition-all duration-200 hover:-translate-y-0.5 hover:bg-maroon-light hover:shadow-[0_12px_28px_rgba(16,42,67,0.2)]"
           >
             View Full Gallery
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </Reveal>
+      </section>
 
       
 
       {/* Programs preview */}
-      <section className="py-20">
+      <section className="bg-ivory py-16 md:py-24">
         <div className="container-seva">
-          <Reveal className="max-w-xl">
+          <Reveal className="max-w-2xl">
             <span className="eyebrow">What we do</span>
             <h2 className="mt-4 font-display text-3xl md:text-4xl text-maroon">
               Our seva, at a glance.
             </h2>
           </Reveal>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             <ProgramCard
               accent="sky"
               icon={Stethoscope}
@@ -266,8 +276,8 @@ export default async function Home() {
       <Testimonials />
 
       {/* Quote */}
-      <section className="relative overflow-hidden bg-maroon py-24">
-        <div className="absolute inset-0 bg-flame-glow opacity-30" />
+      <section className="relative isolate overflow-hidden bg-maroon py-20 md:py-24">
+        <div className="absolute inset-0 bg-flame-glow opacity-25" />
         <Reveal className="container-seva relative text-center">
           <SevaMark size={40} className="mx-auto" />
           <blockquote className="mt-6 mx-auto max-w-2xl font-display text-2xl md:text-3xl italic text-ivory leading-snug">
@@ -278,9 +288,9 @@ export default async function Home() {
       </section>
 
       {/* CTA */}
-      <section className="py-20">
+      <section className="section-band border-t border-marigold/15 py-20 md:py-24">
         <div className="container-seva">
-          <Reveal className="rounded-[2rem] border border-marigold/30 bg-ivory-soft px-8 py-14 text-center md:px-16">
+          <Reveal className="rounded-xl border border-marigold/35 bg-white px-6 py-12 text-center shadow-[0_18px_48px_rgba(23,47,64,0.07)] sm:px-8 md:px-16 md:py-14">
             <h2 className="font-display text-3xl md:text-4xl text-maroon">
               Join us in this offering.
             </h2>
@@ -291,7 +301,7 @@ export default async function Home() {
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/volunteer"
-                className="rounded-full border border-maroon px-7 py-3.5 text-sm font-semibold text-maroon transition-colors hover:bg-maroon/5"
+                className="rounded-md border border-maroon/25 px-7 py-3.5 text-sm font-semibold text-maroon transition-colors hover:bg-maroon/5"
               >
                 Volunteer with us
               </Link>

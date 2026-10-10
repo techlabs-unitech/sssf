@@ -44,7 +44,7 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-2xl border border-maroon/10 p-7 md:p-9">
+    <form onSubmit={handleSubmit} className="editorial-card p-6 sm:p-8 md:p-9">
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
           <label htmlFor="c-name" className="text-xs text-sandalwood">Full name</label>
@@ -54,7 +54,7 @@ export default function ContactForm() {
             required
             value={form.name}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
-            className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+            className="form-control mt-2 w-full outline-none"
           />
         </div>
         <div>
@@ -65,7 +65,7 @@ export default function ContactForm() {
             required
             value={form.email}
             onChange={(e) => setForm({ ...form, email: e.target.value })}
-            className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+            className="form-control mt-2 w-full outline-none"
           />
         </div>
       </div>
@@ -76,7 +76,7 @@ export default function ContactForm() {
           id="c-subject"
           value={form.subject}
           onChange={(e) => setForm({ ...form, subject: e.target.value })}
-          className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold"
+          className="form-control mt-2 w-full outline-none"
         >
           <option>General inquiry</option>
           <option>Volunteering</option>
@@ -94,14 +94,14 @@ export default function ContactForm() {
           rows={5}
           value={form.message}
           onChange={(e) => setForm({ ...form, message: e.target.value })}
-          className="mt-2 w-full rounded-xl border border-maroon/15 bg-transparent px-4 py-3 text-sm outline-none focus:border-marigold resize-none"
+          className="form-control mt-2 w-full resize-none outline-none"
         />
       </div>
 
       <button
         type="submit"
         disabled={submitting}
-        className="mt-7 w-full rounded-full bg-maroon py-3.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.01] sm:w-auto sm:px-10 disabled:opacity-70"
+        className="mt-7 w-full rounded-md bg-maroon py-3.5 text-sm font-semibold text-ivory transition-colors hover:bg-maroon-light sm:w-auto sm:px-10 disabled:opacity-70"
       >
         {submitting ? "Sending..." : "Send message"}
       </button>

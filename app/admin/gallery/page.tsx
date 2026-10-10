@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { requireAdminSession } from "@/lib/adminAuth";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import GalleryUploader from "@/components/admin/GalleryUploader";
 import GalleryManagerList from "@/components/admin/GalleryManagerList";
 import LogoutButton from "@/components/admin/LogoutButton";
@@ -16,7 +16,8 @@ export const dynamic = "force-dynamic";
 export default async function AdminGalleryPage() {
   requireAdminSession();
 
-  const { data, error } = await supabaseAdmin
+  const client = getSupabaseAdmin();
+  const { data, error } = await client
     .from("gallery_images")
     .select("id, url, alt, sort_order, created_at")
     .order("sort_order", { ascending: true })

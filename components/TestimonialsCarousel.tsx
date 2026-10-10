@@ -71,7 +71,7 @@ export default function TestimonialsCarousel({ reviews, autoPlayMs = 6000 }: Tes
         >
           {reviews.map((review) => (
             <div key={review.id} className="w-full shrink-0 px-1">
-              <figure className="mx-auto flex max-w-2xl flex-col items-center rounded-2xl border border-maroon/10 bg-white/60 p-8 text-center shadow-[0_12px_35px_rgba(11,15,140,0.06)] md:p-10">
+              <figure className="editorial-card mx-auto flex max-w-2xl flex-col items-center p-7 text-center sm:p-8 md:p-10">
                 <Quote className="h-7 w-7 text-marigold/60" strokeWidth={1.75} />
                 <blockquote className="mt-5 text-base leading-relaxed text-sandalwood md:text-lg">
                   &ldquo;{review.message}&rdquo;

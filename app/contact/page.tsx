@@ -11,13 +11,13 @@ export const metadata: Metadata = pageMetadata("/contact");
 export default function ContactPage() {
   return (
     <>
-      <section className="container-seva py-16 md:py-20">
+      <section className="page-intro container-seva">
         <div className="max-w-2xl">
           <span className="eyebrow">Contact</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             We&rsquo;d love to hear from you.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             Questions about a program, interested in volunteering, or want to partner with us? Reach out below and the team will respond with verified coordination details.
           </p>
         </div>
@@ -32,7 +32,7 @@ export default function ContactPage() {
           <ContactForm />
 
           <div className="space-y-6">
-            <div className="rounded-2xl border border-maroon/10 p-7 space-y-6">
+            <div className="editorial-card space-y-6 p-6 sm:p-7">
               <div className="flex items-start gap-4">
                 <MapPin className="h-5 w-5 shrink-0 text-maroon mt-0.5" strokeWidth={1.75} />
                 <div>

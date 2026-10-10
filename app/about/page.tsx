@@ -13,34 +13,34 @@ export const metadata: Metadata = pageMetadata("/about");
 export default function AboutPage() {
   return (
     <>
-      <section id="overview" className="container-seva relative overflow-hidden py-16 md:py-20 scroll-mt-28">
+      <section id="overview" className="page-intro container-seva relative scroll-mt-28">
         <Image
           src="/images/watermark-seal.png"
           alt=""
           aria-hidden="true"
           width={500}
           height={432}
-          className="pointer-events-none absolute -right-20 -top-16 -z-10 hidden h-[360px] w-[360px] opacity-[0.06] md:block"
+          className="pointer-events-none absolute -right-20 -top-16 z-0 hidden h-[360px] w-[360px] opacity-[0.06] md:block"
         />
-        <div className="grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
+        <div className="relative z-10 grid gap-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
           <div className="max-w-3xl">
             <span className="eyebrow">{aboutPageContent.hero.eyebrow}</span>
-            <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+            <h1 className="page-heading">
               {aboutPageContent.hero.title}
             </h1>
-            <p className="mt-6 text-base leading-relaxed text-sandalwood">
+            <p className="page-summary">
               {aboutPageContent.hero.summary}
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <Link href={aboutPageContent.hero.ctaPrimary.href} className="rounded-full bg-maroon px-6 py-3 text-sm font-semibold text-ivory transition-transform hover:scale-[1.03]">
+              <Link href={aboutPageContent.hero.ctaPrimary.href} className="rounded-md bg-maroon px-6 py-3 text-sm font-semibold text-ivory transition-colors hover:bg-maroon-light">
                 {aboutPageContent.hero.ctaPrimary.label}
               </Link>
-              <Link href={aboutPageContent.hero.ctaSecondary.href} className="rounded-full border border-maroon px-6 py-3 text-sm font-semibold text-maroon">
+              <Link href={aboutPageContent.hero.ctaSecondary.href} className="rounded-md border border-maroon/25 px-6 py-3 text-sm font-semibold text-maroon transition-colors hover:bg-maroon/5">
                 {aboutPageContent.hero.ctaSecondary.label}
               </Link>
             </div>
           </div>
-          <div className="rounded-[2rem] border border-maroon/10 bg-ivory-soft p-8">
+          <div className="editorial-card bg-ivory-soft p-6 sm:p-8">
             <div className="flex items-center gap-3">
               <SevaMark size={42} />
               <div>
@@ -85,7 +85,7 @@ export default function AboutPage() {
               {aboutPageContent.whoWeAre.communities}
             </p>
           </div>
-          <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+          <div className="editorial-card p-6 sm:p-8">
             <div className="grid gap-4">
               <div className="flex gap-4">
                 <span className="flex h-11 w-11 items-center justify-center rounded-full bg-marigold/10 text-maroon"><HeartHandshake className="h-5 w-5" /></span>
@@ -121,7 +121,7 @@ export default function AboutPage() {
           </div>
 
           <div className="mt-10 grid gap-8 md:grid-cols-2">
-            <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+            <div className="editorial-card p-6 sm:p-8">
               <div className="flex items-center gap-3">
                 <ScrollText className="h-6 w-6 text-marigold" />
                 <span className="font-display text-lg text-maroon">Foundation history</span>
@@ -138,7 +138,7 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8">
+            <div className="editorial-card p-6 sm:p-8">
               <div className="flex items-center gap-3">
                 <Landmark className="h-6 w-6 text-marigold" />
                 <span className="font-display text-lg text-maroon">Major milestones</span>
@@ -180,7 +180,7 @@ export default function AboutPage() {
           <h2 className="mt-4 font-display text-3xl text-maroon">What guides our work</h2>
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {aboutPageContent.values.map((value) => (
-              <div key={value.title} className="rounded-2xl border border-maroon/10 p-5 transition-shadow hover:shadow-[0_10px_24px_rgba(11,15,140,0.08)]">
+              <div key={value.title} className="rounded-lg border border-maroon/10 bg-white/70 p-5 transition-shadow hover:shadow-[0_12px_30px_rgba(16,42,67,0.08)]">
                 <h3 className="font-display text-base text-maroon">{value.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-sandalwood">{value.body}</p>
               </div>
@@ -228,7 +228,7 @@ export default function AboutPage() {
           <span className="eyebrow">Founder & Trustees</span>
           <h2 className="mt-4 font-display text-3xl text-maroon">Leadership information</h2>
           <div className="mt-10 grid gap-6 md:grid-cols-[0.9fr_1.1fr]">
-            <div className="rounded-[2rem] border border-maroon/20 bg-white/70 p-8 shadow-sm">
+            <div className="editorial-card p-6 sm:p-8">
               <div className="flex items-center gap-4">
                 <div className="flex h-24 w-24 items-center justify-center rounded-full bg-maroon text-ivory font-display text-3xl">
                   <UserRound className="h-9 w-9" />

@@ -1,6 +1,6 @@
 import crypto from "crypto";
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { getSupabaseAdmin } from "@/lib/supabaseAdmin";
 import { generateReceiptPdf } from "@/lib/receiptPdf";
 import { sendReceiptEmail } from "@/lib/mailer";
 
@@ -29,6 +29,8 @@ export async function POST(req: NextRequest) {
     if (expectedSignature !== razorpay_signature) {
       return NextResponse.json({ error: "Payment verification failed." }, { status: 400 });
     }
+
+    const supabaseAdmin = getSupabaseAdmin();
 
     // 2. Look up the matching donation row.
     const { data: donation, error: fetchError } = await supabaseAdmin

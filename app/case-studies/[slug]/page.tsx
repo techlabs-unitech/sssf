@@ -24,10 +24,10 @@ export default function CaseStudyDetailPage({ params }: { params: { slug: string
   }
 
   return (
-    <section className="container-seva py-16 md:py-20">
+    <section className="page-intro container-seva">
       <div className="max-w-3xl">
         <span className="eyebrow">Case Study</span>
-        <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+        <h1 className="page-heading">
           {study.title}
         </h1>
         <div className="mt-4 flex flex-wrap gap-2 text-xs uppercase tracking-[0.12em] text-sandalwood">

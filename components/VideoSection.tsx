@@ -18,7 +18,7 @@ export default function VideoSection() {
 
         <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {videosContent.length === 0 ? (
-            <div className="rounded-[2rem] border border-maroon/10 bg-white/50 p-8 md:col-span-2 lg:col-span-3">
+            <div className="editorial-card p-6 md:col-span-2 lg:col-span-3 sm:p-8">
               <div className="flex items-center gap-4">
                 <PlayCircle className="h-8 w-8 text-marigold" />
                 <p className="text-sm leading-relaxed text-sandalwood">{videoShowcaseStatus}</p>
@@ -26,7 +26,7 @@ export default function VideoSection() {
             </div>
           ) : (
             videosContent.map((video) => (
-              <article key={video.title} className="group overflow-hidden rounded-[2rem] border border-maroon/10 bg-white/50 transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-lg">
+              <article key={video.title} className="group overflow-hidden rounded-xl border border-maroon/10 bg-white/75 shadow-[0_10px_28px_rgba(23,47,64,0.05)] transition-all duration-300 hover:-translate-y-1 hover:border-marigold/50 hover:shadow-lg">
                 <div className="relative aspect-video bg-maroon/10">
                   <div className="absolute inset-0 flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
                     <PlayCircle className="h-10 w-10 text-marigold" />

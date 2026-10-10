@@ -11,13 +11,13 @@ export const metadata: Metadata = pageMetadata("/programs");
 export default function ProgramsPage() {
   return (
     <>
-      <section className="container-seva py-20 md:py-28">
+      <section className="page-intro container-seva">
         <div className="max-w-2xl">
           <span className="eyebrow">Our Programs</span>
-          <h1 className="mt-4 font-display text-4xl md:text-5xl text-maroon leading-tight">
+          <h1 className="page-heading">
             Seva, in practice.
           </h1>
-          <p className="mt-6 text-base leading-relaxed text-sandalwood">
+          <p className="page-summary">
             Education, health, rural development, women empowerment, environment protection, and disability & elderly care — ten areas of ongoing work, each shaped by what the communities we serve have told us they need most.
           </p>
           <div className="mt-8">

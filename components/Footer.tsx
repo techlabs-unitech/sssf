@@ -28,7 +28,7 @@ export default function Footer() {
         <UnityDivider />
       </div>
 
-      <div className="container-seva grid gap-10 py-14 md:grid-cols-4">
+      <div className="container-seva grid gap-x-10 gap-y-12 py-14 md:grid-cols-2 lg:grid-cols-4 lg:py-16">
         <div>
           <div className="flex items-center gap-3">
             <Image
@@ -57,7 +57,7 @@ export default function Footer() {
             <a
               href={ORG.facebook}
               aria-label="Facebook"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
             >
               <Facebook className="h-4 w-4" />
             </a>
@@ -65,7 +65,7 @@ export default function Footer() {
             <a
               href={ORG.instagram}
               aria-label="Instagram"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
             >
               <Instagram className="h-4 w-4" />
             </a>
@@ -73,7 +73,7 @@ export default function Footer() {
             <a
               href={ORG.linkedin}
               aria-label="LinkedIn"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
+              className="flex h-10 w-10 items-center justify-center rounded-md border border-ivory/20 transition-colors hover:border-marigold hover:text-marigold"
             >
               <Linkedin className="h-4 w-4" />
             </a>
