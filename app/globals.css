@@ -117,7 +117,7 @@ html {
   }
 
   .mobile-menu-open {
-    @apply max-h-[32rem] opacity-100;
+    @apply max-h-[calc(100dvh-6rem)] overflow-y-auto opacity-100;
   }
 
   .image-viewer {

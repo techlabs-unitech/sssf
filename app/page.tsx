@@ -9,6 +9,8 @@ import FounderStory from "@/components/FounderStory";
 import PhotoCarousel from "@/components/PhotoCarousel";
 import Testimonials from "@/components/Testimonials";
 import Reveal from "@/components/Reveal";
+import HeroSlider from "@/components/HeroSlider";
+import { getHeroSlides } from "@/lib/heroSlides";
 import { foundationProgramPhotos } from "@/lib/foundationPhotos";
 import { pageMetadata } from "@/lib/seo";
 
@@ -73,6 +75,8 @@ const IMPACT_AREAS = [
 ];
 
 export default async function Home() {
+  const heroSlides = await getHeroSlides();
+
   return (
     <>
       {/* Hero */}
@@ -86,48 +90,8 @@ export default async function Home() {
           height={432}
           className="pointer-events-none absolute -right-16 -top-16 -z-10 hidden h-[380px] w-[380px] opacity-[0.07] md:block lg:-right-10 lg:top-1/2 lg:h-[460px] lg:w-[460px] lg:-translate-y-1/2"
         />
-        <div className="container-seva relative grid gap-12 py-16 md:py-24 lg:grid-cols-2 lg:items-center">
-          <div className="animate-rise">
-            <span className="eyebrow">NGO in Chintamani, Chikkaballapura · Since 2021</span>
-            <h1 className="mt-4 font-display text-4xl leading-[1.1] text-maroon md:text-5xl lg:text-[3.2rem]">
-              Hope, dignity, and
-              <br />
-              <span className="italic text-marigold">brighter futures.</span>
-            </h1>
-            <p className="mt-6 max-w-md text-base leading-relaxed text-sandalwood">
-              Dr. N.R. Malluraja, known to the community as Sai Swamy, founded Sri Sai Swamy Seva Foundation in 2021 in Chintamani, Chikkaballapura district. He leads the foundation&apos;s grassroots-to-policy work across health, education, socio-economic empowerment, and community welfare.
-            </p>
-            <div className="mt-9 flex flex-wrap items-center gap-4">
-              <a
-                href="/Srisai-Swamy-Seva-Foundation.pdf"
-                download
-                className="rounded-full bg-maroon px-7 py-3.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.03]"
-              >
-                📄 Download Foundation Profile
-              </a>
-              
-            </div>
-          </div>
-
-          <div className="relative animate-rise [animation-delay:150ms]">
-            <div className="relative aspect-square w-full max-w-md mx-auto overflow-hidden rounded-[2rem] border border-marigold/30">
-              <video
-                src="/edu.mp4"
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-            </div>
-            <div className="absolute -bottom-6 -left-6 hidden md:flex items-center gap-3 rounded-2xl bg-ivory border border-marigold/30 px-5 py-4 shadow-xl">
-              <SevaMark size={30} />
-              <div>
-                <p className="font-display text-lg text-maroon leading-none">SSSF Foundation</p>
-                <p className="text-xs text-sandalwood mt-1">Srisai Swamy Seva Foundation</p>
-              </div>
-            </div>
-          </div>
+        <div className="relative animate-rise">
+          <HeroSlider slides={heroSlides} />
         </div>
         <div className="text-maroon/40">
           <UnityDivider />

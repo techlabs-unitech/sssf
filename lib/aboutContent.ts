@@ -41,15 +41,17 @@ export const aboutPageContent = {
       },
     ],
   },
+  // Vision, mission and values: wording from the foundation's official
+  // Vision / Mission / Values letter signed by N.R. Malluraja.
   vision: {
     title: "Vision",
     body:
-      "Self-determination and opportunity/choice for people to enhance their potential and well-being.",
+      "Self-determination and that all people should have the opportunity and choice to enhance their own potential and well-being.",
   },
   mission: {
     title: "Mission",
     body:
-      "To contribute toward a sustainable society where resources are shared, amenities are accessible, opportunities are opened for all strata of society, and people can live with dignity and respect. The source describes a participatory approach as the basis for sustainable development.",
+      "Building a sustainable society where in all the resources are shared, amenities are accessible, opportunities are opened for all different strata of the society and people live with dignity and respect. We strongly believe that the participatory method is the base for sustainable development.",
   },
   areasWeServe: {
     title: "Areas we serve",
@@ -78,47 +80,20 @@ export const aboutPageContent = {
     ],
   },
   values: [
-    {
-      title: "Honesty",
-      body: "Honesty is an organizational value that supports credible and consistent community action.",
-    },
-    {
-      title: "Transparency",
-      body: "Transparency is a value of the foundation’s public and accountable service culture.",
-    },
-    {
-      title: "Accountability",
-      body: "Accountability is a value placed on public responsibility and service-relevant follow-through.",
-    },
-    {
-      title: "Crisis management",
-      body: "Crisis management supports organized response where communities face urgent or vulnerable conditions.",
-    },
-    {
-      title: "Integration",
-      body: "Integration supports coordination across people, needs, and community systems.",
-    },
-    {
-      title: "Coordination",
-      body: "Coordination strengthens collective community response and development work.",
-    },
-    {
-      title: "Equity",
-      body: "Equity guides attention to people and communities facing denial of access, rights, and opportunity.",
-    },
-    {
-      title: "Reliability",
-      body: "Reliability supports continuity and trust in service delivery and collaboration.",
-    },
-    {
-      title: "Collaboration",
-      body: "Collaboration supports partnerships with Panchayath Raj Institutions, CBOs, CSOs, and communities.",
-    },
+    "Honesty",
+    "Transparency",
+    "Accountability",
+    "Crisis management",
+    "Integration",
+    "Coordination",
+    "Equity",
+    "Reliability",
+    "Collaboration",
   ],
   founder: {
     name: "Dr. N.R. Malluraja (Sai Swamy)",
     position: "Founder / Chairman",
-    photo: "/images/founder-with-mural.jpeg",
+    photo: "/images/founder-circle.jpg",
     message:
       "Tend to your Thoughts, for they ripen into Words.\nTend to your Words, for they take root as Actions.\nTend to your Actions, for they settle into Habits.\nTend to your Habits, for they shape your Character.\nTend to your Character, for it writes your Destiny,\nAnd a Destiny lived in service becomes a Life that lights the path for others.",
   },

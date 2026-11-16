@@ -12,6 +12,8 @@ type NavItem = {
   href: string;
   label: string;
   dropdown?: DropdownLink[];
+  /** Not a page of its own — clicking it only opens the dropdown. */
+  menuOnly?: boolean;
 };
 
 const ABOUT_DROPDOWN: DropdownLink[] = [
@@ -30,15 +32,40 @@ const OUR_PROGRAMS_DROPDOWN: DropdownLink[] = [
   { href: "/disability-elderly-care", label: "Disability & Elderly Care" },
 ];
 
-const NAV_LINKS: NavItem[] = [
-  { href: "/about", label: "About", dropdown: ABOUT_DROPDOWN },
-  { href: "/programs", label: "Our Programs", dropdown: OUR_PROGRAMS_DROPDOWN },
-  { href: "/gallery", label: "Gallery" },
+const MORE_DROPDOWN: DropdownLink[] = [
   { href: "/events", label: "Events" },
   { href: "/awards", label: "Awards & Recognition" },
   { href: "/annual-reports", label: "Annual Reports" },
-  { href: "/volunteer", label: "Volunteer" },
-  { href: "/contact", label: "Contact" },
+];
+
+const HOME: NavItem = { href: "/", label: "Home" };
+const ABOUT: NavItem = { href: "/about", label: "About", dropdown: ABOUT_DROPDOWN };
+const PROGRAMS: NavItem = { href: "/programs", label: "Our Programs", dropdown: OUR_PROGRAMS_DROPDOWN };
+const GALLERY: NavItem = { href: "/gallery", label: "Gallery" };
+const VOLUNTEER: NavItem = { href: "/volunteer", label: "Volunteer" };
+const CONTACT: NavItem = { href: "/contact", label: "Contact" };
+
+// Desktop bar: Events / Awards / Annual Reports are grouped under "More" so
+// the bar fits beside the logo and Donate button on laptop screens.
+const DESKTOP_LINKS: NavItem[] = [
+  HOME,
+  ABOUT,
+  PROGRAMS,
+  GALLERY,
+  { href: "more", label: "More", dropdown: MORE_DROPDOWN, menuOnly: true },
+  VOLUNTEER,
+  CONTACT,
+];
+
+// Mobile menu has room for everything as a flat list.
+const MOBILE_LINKS: NavItem[] = [
+  HOME,
+  ABOUT,
+  PROGRAMS,
+  GALLERY,
+  ...MORE_DROPDOWN,
+  VOLUNTEER,
+  CONTACT,
 ];
 
 export default function Header() {
@@ -51,7 +78,26 @@ export default function Header() {
   useEffect(() => {
     setOpen(false);
     setMobileSubOpen(null);
+    setDesktopDropdown(null);
   }, [pathname]);
+
+  // A dropdown opened by click/keyboard closes on Esc or a click elsewhere.
+  const navRef = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!desktopDropdown) return;
+    const onDown = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) setDesktopDropdown(null);
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setDesktopDropdown(null);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, [desktopDropdown]);
 
   const openDropdown = (href: string) => {
     if (closeTimer.current) clearTimeout(closeTimer.current);
@@ -81,10 +127,20 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-5 ml-auto lg:flex xl:gap-7">
-          {NAV_LINKS.map((link) => {
+        <nav ref={navRef} className="hidden items-center gap-5 ml-auto min-[1140px]:flex xl:gap-7">
+          {DESKTOP_LINKS.map((link) => {
             const active = pathname === link.href || (link.dropdown && link.dropdown.some((d) => pathname === d.href.split("#")[0]));
             const isDropdownOpen = desktopDropdown === link.href;
+            const triggerClass = `relative flex items-center gap-1 whitespace-nowrap py-2 text-[15px] font-medium tracking-wide transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-marigold after:transition-transform hover:after:scale-x-100 ${
+              active
+                ? "font-semibold text-maroon after:scale-x-100"
+                : "text-sandalwood hover:text-maroon"
+            }`;
+            const chevron = link.dropdown ? (
+              <ChevronDown
+                className={`h-3.5 w-3.5 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
+              />
+            ) : null;
             return (
               <div
                 key={link.href}
@@ -92,21 +148,23 @@ export default function Header() {
                 onMouseEnter={() => link.dropdown && openDropdown(link.href)}
                 onMouseLeave={() => link.dropdown && scheduleClose()}
               >
-                <Link
-                  href={link.href}
-                  className={`relative flex items-center gap-1 whitespace-nowrap py-2 text-[15px] font-medium tracking-wide transition-colors after:absolute after:inset-x-0 after:-bottom-1 after:h-0.5 after:origin-left after:scale-x-0 after:bg-marigold after:transition-transform hover:after:scale-x-100 ${
-                    active
-                      ? "font-semibold text-maroon after:scale-x-100"
-                      : "text-sandalwood hover:text-maroon"
-                  }`}
-                >
-                  {link.label}
-                  {link.dropdown ? (
-                    <ChevronDown
-                      className={`h-3.5 w-3.5 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""}`}
-                    />
-                  ) : null}
-                </Link>
+                {link.menuOnly ? (
+                  <button
+                    type="button"
+                    aria-haspopup="true"
+                    aria-expanded={isDropdownOpen}
+                    onClick={() => setDesktopDropdown((v) => (v === link.href ? null : link.href))}
+                    className={triggerClass}
+                  >
+                    {link.label}
+                    {chevron}
+                  </button>
+                ) : (
+                  <Link href={link.href} className={triggerClass}>
+                    {link.label}
+                    {chevron}
+                  </Link>
+                )}
 
                 {link.dropdown ? (
                   <div
@@ -132,7 +190,7 @@ export default function Header() {
           })}
         </nav>
 
-        <div className="hidden lg:flex items-center shrink-0 pl-8">
+        <div className="hidden min-[1140px]:flex items-center shrink-0 pl-8">
           <Link
             href="/donate"
             className="flex items-center gap-2 whitespace-nowrap rounded-full bg-maroon px-6 py-2.5 text-sm font-semibold text-ivory transition-transform hover:scale-[1.03]"
@@ -141,7 +199,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-3 min-[1140px]:hidden">
           <Link
             href="/donate"
             className="flex items-center gap-1.5 rounded-full bg-maroon px-4 py-2 text-xs font-semibold text-ivory"
@@ -161,9 +219,9 @@ export default function Header() {
         </div>
       </div>
 
-      <div id="mobile-menu" className={`mobile-menu lg:hidden ${open ? "mobile-menu-open" : ""}`}>
+      <div id="mobile-menu" className={`mobile-menu min-[1140px]:hidden ${open ? "mobile-menu-open" : ""}`}>
         <nav className="mx-auto flex w-full max-w-7xl flex-col px-6 py-4 md:px-10">
-          {NAV_LINKS.map((link) => (
+          {MOBILE_LINKS.map((link) => (
             <div key={link.href} className="border-b border-maroon/5">
               <div className="flex items-center justify-between">
                 <Link

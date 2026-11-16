@@ -24,6 +24,16 @@ export const ORG = {
     "https://maps.app.goo.gl/2TumVGssV3pDm9Ur9",
 };
 
+// Bank account for direct transfers — from the "NGO Data Sheet" (row 21,
+// "Bank A/C details") on page 7 of the Foundation Profile PDF.
+export const ORG_BANK = {
+  accountName: "Srisai Swamy Seva Foundation",
+  bankName: "Kotak Mahindra Bank",
+  branch: "Chintamani",
+  accountNumber: "9972955391",
+  ifsc: "KKBK0008241",
+};
+
 export const ORG_CONTACT = {
   phoneDisplay: ORG.phone,
   emailDisplay: ORG.email,

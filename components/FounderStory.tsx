@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Quote } from "lucide-react";
 import Reveal from "./Reveal";
+import FounderPortrait, { PortraitCornerAccents } from "./FounderPortrait";
 import { aboutPageContent } from "@/lib/aboutContent";
 
 export default function FounderStory() {
@@ -18,13 +18,12 @@ export default function FounderStory() {
         </Reveal>
 
         <div className="mt-10 grid overflow-hidden rounded-[2rem] border border-maroon/10 shadow-[0_20px_45px_rgba(11,15,140,0.08)] md:grid-cols-[0.85fr_1.15fr]">
-          <Reveal className="relative mx-auto w-full max-w-sm min-h-[300px] md:min-h-[400px] md:mx-0 md:max-w-none">
-            <Image
+          <Reveal className="relative flex items-center justify-center overflow-hidden bg-ivory-soft px-10 py-16 md:min-h-[400px] md:py-12">
+            <PortraitCornerAccents />
+            <FounderPortrait
               src={founder.photo}
               alt={founder.name}
-              fill
-              sizes="(max-width: 768px) 100vw, 40vw"
-              className="object-cover object-center"
+              className="w-full max-w-[280px] md:max-w-[320px]"
               priority
             />
           </Reveal>

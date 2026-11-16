@@ -3,6 +3,7 @@ import { pageMetadata } from "@/lib/seo";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 import UnityDivider from "@/components/UnityDivider";
 import ContactForm from "@/components/ContactForm";
+import BankDetails from "@/components/BankDetails";
 import { ORG, ORG_CONTACT } from "@/lib/orgConfig";
 
 
@@ -28,10 +29,12 @@ export default function ContactPage() {
       </div>
 
       <section className="py-16 md:py-20">
-        <div className="container-seva grid gap-12 lg:grid-cols-[1fr_0.8fr]">
+        <div className="container-seva grid grid-cols-1 gap-12 lg:grid-cols-[1fr_0.8fr]">
           <ContactForm />
 
           <div className="space-y-6">
+            <BankDetails />
+
             <div className="rounded-2xl border border-maroon/10 p-7 space-y-6">
               <div className="flex items-start gap-4">
                 <MapPin className="h-5 w-5 shrink-0 text-maroon mt-0.5" strokeWidth={1.75} />
@@ -53,7 +56,7 @@ export default function ContactPage() {
                 <Mail className="h-5 w-5 shrink-0 text-maroon mt-0.5" strokeWidth={1.75} />
                 <div>
                   <h3 className="font-display text-base text-maroon">Email us</h3>
-                  <p className="mt-1 text-sm text-sandalwood">
+                  <p className="mt-1 break-all text-sm text-sandalwood">
                     {ORG_CONTACT.emailDisplay}
                   </p>
                 </div>

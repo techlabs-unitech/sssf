@@ -21,65 +21,21 @@ export default function FullscreenImageViewer({
   className = "",
 }: FullscreenImageViewerProps) {
   const [open, setOpen] = useState(false);
-  const [closing, setClosing] = useState(false);
   const [mounted, setMounted] = useState(false);
   const viewerId = useId();
   const triggerRef = useRef<HTMLButtonElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const hoverTimerRef = useRef<number | null>(null);
-  const closeTimerRef = useRef<number | null>(null);
 
-  function clearHoverTimer() {
-    if (hoverTimerRef.current !== null) {
-      window.clearTimeout(hoverTimerRef.current);
-      hoverTimerRef.current = null;
-    }
-  }
-
-  function clearCloseTimer() {
-    if (closeTimerRef.current !== null) {
-      window.clearTimeout(closeTimerRef.current);
-      closeTimerRef.current = null;
-    }
-  }
-
+  // Opens on click/tap only — hovering a photo does nothing but a slight zoom.
   function openViewer() {
-    clearHoverTimer();
-    clearCloseTimer();
-    setClosing(false);
     window.dispatchEvent(new CustomEvent("foundation-image-viewer-open", { detail: viewerId }));
     setOpen(true);
   }
 
   const closeViewer = useCallback(() => {
-    clearCloseTimer();
-    setClosing(false);
     setOpen(false);
     window.setTimeout(() => triggerRef.current?.focus(), 0);
   }, []);
-
-  function scheduleClose() {
-    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
-
-    clearCloseTimer();
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    setClosing(true);
-
-    closeTimerRef.current = window.setTimeout(() => {
-      setClosing(false);
-      setOpen(false);
-    }, reduceMotion ? 0 : 220);
-  }
-
-  function handleMouseEnter() {
-    if (
-      !document.querySelector('[role="dialog"]') &&
-      window.matchMedia("(hover: hover) and (pointer: fine)").matches
-    ) {
-      clearHoverTimer();
-      hoverTimerRef.current = window.setTimeout(openViewer, 220);
-    }
-  }
 
   useEffect(() => {
     function handleOtherViewer() {
@@ -109,8 +65,6 @@ export default function FullscreenImageViewer({
     return () => {
       document.body.style.overflow = previousOverflow;
       document.removeEventListener("keydown", handleKeyDown);
-      clearHoverTimer();
-      clearCloseTimer();
     };
   }, [open, closeViewer]);
 
@@ -119,20 +73,7 @@ export default function FullscreenImageViewer({
     return () => setMounted(false);
   }, []);
 
-  useEffect(() => {
-    clearHoverTimer();
-    clearCloseTimer();
-    return () => {
-      clearHoverTimer();
-      clearCloseTimer();
-    };
-  }, []);
-
-  const overlayVisible = mounted && (open || closing);
-  const overlayTransitionClass = closing
-    ? "opacity-0 scale-[0.985]"
-    : "opacity-100 scale-100";
-  const reduceMotion = typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const overlayVisible = mounted && open;
 
   return (
     <>
@@ -140,8 +81,6 @@ export default function FullscreenImageViewer({
         ref={triggerRef}
         type="button"
         aria-label={`View larger image: ${alt}`}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={clearHoverTimer}
         onClick={openViewer}
         className={`group relative block h-full w-full cursor-zoom-in overflow-hidden text-left ${className}`}
       >
@@ -153,24 +92,15 @@ export default function FullscreenImageViewer({
       {overlayVisible
         ? createPortal(
             <div
-              className={`fixed inset-0 z-[1000] flex items-center justify-center bg-charcoal/80 p-4 backdrop-blur-sm transition-all duration-300 ease-out md:p-8 ${overlayTransitionClass} ${reduceMotion ? "duration-0" : ""}`}
+              className="image-viewer-backdrop fixed inset-0 z-[1000] flex items-center justify-center bg-charcoal/80 p-4 backdrop-blur-sm md:p-8"
               role="dialog"
               aria-modal="true"
               aria-label={`Image viewer: ${alt}`}
-              onPointerEnter={() => {
-                clearCloseTimer();
-                setClosing(false);
-              }}
-              onPointerLeave={() => {
-                if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-                  scheduleClose();
-                }
-              }}
               onMouseDown={(event) => {
                 if (event.target === event.currentTarget) closeViewer();
               }}
             >
-              <div className="relative z-10 flex max-h-[90vh] max-w-[92vw] flex-col items-center justify-center">
+              <div className="image-viewer-frame relative z-10 flex max-h-[90vh] max-w-[92vw] flex-col items-center justify-center">
                 <button
                   ref={closeRef}
                   type="button"
